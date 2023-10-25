@@ -1,4 +1,4 @@
-namespace Raylib_cs.Extension.Core;
+namespace Raylib_cs.Extension;
 
 public static partial class RenderTexture2DEx
 {

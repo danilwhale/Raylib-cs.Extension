@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Raylib_cs.Extension.Core;
+namespace Raylib_cs.Extension;
 
 public static partial class Camera3DEx
 {
