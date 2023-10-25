@@ -12,4 +12,10 @@
       <ProjectReference Include="..\Raylib-cs.Extension\Raylib-cs.Extension.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Assets\Textures\RaylibCsExtension.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
