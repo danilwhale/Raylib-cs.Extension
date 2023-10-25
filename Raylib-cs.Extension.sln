@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Extension", "Raylib-cs.Extension\Raylib-cs.Extension.csproj", "{72A48E72-8A37-49F7-AE94-7B92D3F720C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raylib-cs.Extension.Game", "Raylib-cs.Extension.Game\Raylib-cs.Extension.Game.csproj", "{3F851AF1-6F7E-4630-9882-C139B1CDD7FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{72A48E72-8A37-49F7-AE94-7B92D3F720C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72A48E72-8A37-49F7-AE94-7B92D3F720C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72A48E72-8A37-49F7-AE94-7B92D3F720C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F851AF1-6F7E-4630-9882-C139B1CDD7FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F851AF1-6F7E-4630-9882-C139B1CDD7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F851AF1-6F7E-4630-9882-C139B1CDD7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F851AF1-6F7E-4630-9882-C139B1CDD7FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
