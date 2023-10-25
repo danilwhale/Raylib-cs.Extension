@@ -8,6 +8,7 @@ public static partial class ColorEx
     public static Vector4 Normalize(this Color color) => Raylib.ColorNormalize(color);
     public static Vector3 ToHsv(this Color color) => Raylib.ColorToHSV(color);
 
+    public static Color Fade(this Color color, float alpha) => Raylib.Fade(color, alpha);
     public static Color Tint(this Color color, Color tint) => Raylib.ColorTint(color, tint);
     public static Color Brightness(this Color color, float factor) => Raylib.ColorBrightness(color, factor);
     public static Color Contrast(this Color color, float contrast) => Raylib.ColorContrast(color, contrast);
