@@ -1,5 +1,5 @@
 ![epic library logo trust me its very epic](Assets/Logo.png)
-# Raylib-cs.Extension
+# Raylib-cs.Extensions
 ## attempt to make oop using extensions on top of raylib-cs
 
 todo:
@@ -7,7 +7,7 @@ todo:
 - add comments to methods using cheatsheet
 - port examples
 
-there's also Raylib-cs.Extension.Game project to test things i made
+there's also Raylib-cs.Extensions.Game project to test things i made
 
 ---
 
