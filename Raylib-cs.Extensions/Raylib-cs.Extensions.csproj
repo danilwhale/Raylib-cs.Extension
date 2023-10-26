@@ -15,6 +15,7 @@
         <PackageIcon>Logo.png</PackageIcon>
         <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.Extensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,9 +25,15 @@
     <ItemGroup>
       <None Include="..\Assets\Logo.png">
         <Pack>True</Pack>
-        <PackagePath></PackagePath>
         <Link>Logo.png</Link>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\README.md">
+          <Pack>true</Pack>
+        <Link>README.md</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
