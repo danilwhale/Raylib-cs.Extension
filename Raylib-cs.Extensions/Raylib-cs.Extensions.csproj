@@ -7,6 +7,9 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+    
+    <PropertyGroup>
         <Title>Raylib-cs.Extensions</Title>
         <Authors>danilwhale</Authors>
         <Description>an attempt to make oop using extensions on top of raylib-cs</Description>
@@ -16,26 +19,29 @@
         <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.Extensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Raylib-cs" Version="4.5.0.4" />
+        <PackageReference Include="Raylib-cs" Version="4.5.0.4"/>
     </ItemGroup>
-
+    
     <ItemGroup>
-      <None Include="..\Assets\Logo.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-        <Link>Logo.png</Link>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\README.md">
-          <Pack>true</Pack>
-          <PackagePath></PackagePath>
-        <Link>README.md</Link>
-      </Content>
+        <None Include="..\Assets\Logo.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>Logo.png</Link>
+        </None>
+        <None Include="..\LICENSE">
+            <Pack>true</Pack>
+            <PackagePath></PackagePath>
+            <Link>LICENSE</Link>
+        </None>
+        <None Include="..\README.md">
+            <Pack>true</Pack>
+            <PackagePath></PackagePath>
+            <Link>README.md</Link>
+        </None>
     </ItemGroup>
 
 </Project>
