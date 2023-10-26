@@ -1,4 +1,6 @@
 ![epic library logo trust me its very epic](Assets/Logo.png)
+[![Nuget](https://img.shields.io/nuget/v/Raylib-cs.Extensions)](https://www.nuget.org/packages/Raylib-cs.Extensions)
+
 # Raylib-cs.Extensions
 ## attempt to make oop using extensions on top of raylib-cs
 ### wip!!1
@@ -21,12 +23,29 @@ to use this cool library you need:
 1. install Raylib-cs package
 2. download source code
 3. unpack `Raylib_cs.Extensions` folder to your project folder
+
 ### nuget package 
-not on nuget
+#### dotnet cli
+```
+dotnet install Raylib-cs.Extensions
+```
+
+#### visual studio
+1. `Project` > `Manage NuGet Packages`
+2. enter `Raylib-cs.Extensions` in search bar
+3. select package
+4. click `[ Install ]`
+
+#### rider
+1. triple line in title bar (Alt + \)
+2. `Tools` > `NuGet` > `Show NuGet Packages`
+3. enter `Raylib-cs.Extensions` in search bar
+4. select package
+5. click on green + on right side
 
 ---
 
-## hello world game
+## hello world window
 ```cs
 using Raylib_cs;
 using static Raylib_cs.Raylib;
