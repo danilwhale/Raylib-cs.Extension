@@ -26,4 +26,26 @@ public static partial class RectangleEx
         rectangle.FromVector(position, size);
         return rectangle;
     }
+
+    public static Vector2 GetPosition(this Rectangle rectangle)
+    {
+        return new Vector2(rectangle.x, rectangle.y);
+    }
+
+    public static Vector2 GetSize(this Rectangle rectangle)
+    {
+        return new Vector2(rectangle.width, rectangle.height);
+    }
+
+    public static void SetPosition(this ref Rectangle rectangle, Vector2 position)
+    {
+        rectangle.x = position.X;
+        rectangle.y = position.Y;
+    }
+
+    public static void SetSize(this ref Rectangle rectangle, Vector2 size)
+    {
+        rectangle.width = size.X;
+        rectangle.height = size.Y;
+    }
 }
