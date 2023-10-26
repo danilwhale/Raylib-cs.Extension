@@ -11,13 +11,6 @@ there's also Raylib-cs.Extensions.Game project to test things i made
 
 ---
 
-## requirements
-to use this cool library you need:
-- raylib-cs (at least 4.5.0.4)
-- net 6.0 (based version)
-
----
-
 ## installation
 ### embedded
 1. install Raylib-cs package
