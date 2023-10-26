@@ -9,6 +9,12 @@ public static partial class ColorEx
     /// </summary>
     public static void DrawText(this Color tint, string text, int x, int y, int fontSize)
         => Raylib.DrawText(text, x, y, fontSize, tint);
+
+    /// <summary>
+    /// Draw text (using default font)
+    /// </summary>
+    public static void DrawText(this Color tint, string text, float x, float y, float fontSize)
+        => tint.DrawText(Raylib.GetFontDefault(), text, new Vector2(x, y), fontSize, fontSize / 10f);
     
     /// <summary>
     /// Draw text using font and additional parameters
