@@ -6,10 +6,27 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Raylib-cs.Extensions</Title>
+        <Authors>danilwhale</Authors>
+        <Description>an attempt to make oop using extensions on top of raylib-cs</Description>
+        <Copyright>Copyright (c) 2023 danilwhale</Copyright>
+        <PackageProjectUrl>https://github.com/danilwhale/Raylib-cs.Extensions</PackageProjectUrl>
+        <PackageIcon>Logo.png</PackageIcon>
+        <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.Extensions</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Raylib-cs" Version="4.5.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\Assets\Logo.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>Logo.png</Link>
+      </None>
     </ItemGroup>
 
 </Project>
