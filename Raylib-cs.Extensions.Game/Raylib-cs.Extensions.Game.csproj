@@ -3,13 +3,13 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
-        <RootNamespace>Raylib_cs.Extension.Game</RootNamespace>
+        <RootNamespace>Raylib_cs.Extensions.Game</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Raylib-cs.Extension\Raylib-cs.Extension.csproj" />
+      <ProjectReference Include="..\Raylib-cs.Extensions\Raylib-cs.Extensions.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Raylib_cs.Extension;
+namespace Raylib_cs.Extensions;
 
 public static partial class Texture2DEx
 {

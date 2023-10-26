@@ -2,7 +2,7 @@
 global using Raylib_cs;
 global using System.Numerics;
 global using System.Text;
-global using Raylib_cs.Extension;
+global using Raylib_cs.Extensions;
 
 InitWindow(1024, 768, "test");
 SetTargetFPS(60);
