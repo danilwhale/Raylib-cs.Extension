@@ -25,6 +25,7 @@
     <ItemGroup>
       <None Include="..\Assets\Logo.png">
         <Pack>True</Pack>
+        <PackagePath></PackagePath>
         <Link>Logo.png</Link>
       </None>
     </ItemGroup>
@@ -32,6 +33,7 @@
     <ItemGroup>
       <Content Include="..\README.md">
           <Pack>true</Pack>
+          <PackagePath></PackagePath>
         <Link>README.md</Link>
       </Content>
     </ItemGroup>
