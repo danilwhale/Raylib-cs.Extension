@@ -3,7 +3,6 @@
 ## attempt to make oop using extensions on top of raylib-cs
 ### wip!!1
 todo:
-- add comments for methods using cheatsheet
 - port examples
 
 there's also Raylib-cs.Extensions.Game project to test things i made
