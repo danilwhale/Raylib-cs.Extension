@@ -7,10 +7,6 @@ public static partial class RectangleEx
     /// <summary>
     /// Set rectangle values from 2d position and 2d size vectors
     /// </summary>
-    /// <param name="rectangle"></param>
-    /// <param name="position"></param>
-    /// <param name="size"></param>
-    /// <returns></returns>
     public static Rectangle FromVector(this ref Rectangle rectangle, Vector2 position, Vector2 size)
     {
         rectangle.x = position.X;
@@ -24,9 +20,6 @@ public static partial class RectangleEx
     /// <summary>
     /// Create rectangle from 2d position and 2d size vectors
     /// </summary>
-    /// <param name="position"></param>
-    /// <param name="size"></param>
-    /// <returns></returns>
     public static Rectangle FromVector(Vector2 position, Vector2 size)
     {
         Rectangle rectangle = new Rectangle();

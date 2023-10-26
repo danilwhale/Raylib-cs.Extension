@@ -5,15 +5,12 @@ public static partial class RaylibEx
     /// <summary>
     /// Begin scissor mode (define screen area for following drawing)
     /// </summary>
-    /// <param name="rectangle"></param>
     public static void BeginScissorMode(Rectangle rectangle) =>
         Raylib.BeginScissorMode((int)rectangle.x, (int)rectangle.y, (int)rectangle.width, (int)rectangle.height);
     
     /// <summary>
     /// Compress data (DEFLATE algorithm)
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
     public static unsafe byte[] CompressData(byte[] data)
     {
         fixed (byte* dataPtr = data)
@@ -31,8 +28,6 @@ public static partial class RaylibEx
     /// <summary>
     /// Decompress data (DEFLATE algorithm)
     /// </summary>
-    /// <param name="compData"></param>
-    /// <returns></returns>
     public static unsafe byte[] DecompressData(byte[] compData)
     {
         fixed (byte* compDataPtr = compData)
@@ -51,8 +46,6 @@ public static partial class RaylibEx
     /// <summary>
     /// Encode data to Base64 string
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
     public static unsafe string EncodeDataBase64(byte[] data)
     {
         fixed (byte* dataPtr = data)
@@ -68,8 +61,6 @@ public static partial class RaylibEx
     /// <summary>
     /// Decode Base64 string data
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
     public static unsafe byte[] DecodeDataBase64(string data)
     {
         byte[] dataBytes = data.ToUtf8String();
