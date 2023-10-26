@@ -42,19 +42,19 @@ while (!WindowShouldClose())
     
     if (use2DCamera) cam2d.BeginMode();
     else cam3d.BeginMode();
-    
-    Color.ORANGE.DrawCircle(new Vector2(0, 0), 64);
-    RectangleEx.FromVector(Vector2.One * 64, Vector2.One * 64).DrawGradient(GradientDirection.Horizontal, Color.RED, Color.BLUE);
-    
-    texture.Draw(new Vector2(-256, -256), 0, 1, Color.WHITE);
-    
-    DrawText(encoded, 0, 0, 32, Color.RED);
-    DrawText(decoded, 0, 32, 32, Color.GREEN);
-    
+    {
+        Color.ORANGE.DrawCircle(new Vector2(0, 0), 64);
+        new Rectangle(64, 64, 64, 64).DrawGradient(GradientDirection.Horizontal, Color.RED, Color.BLUE);
+
+        texture.Draw(new Vector2(-256, -256), 0, 1, Color.WHITE);
+
+        Color.RED.DrawText(encoded, 0, 0, 32);
+        Color.GREEN.DrawText(decoded, 0, 32, 32);
+    }
     if (use2DCamera) cam2d.EndMode();
     else cam3d.EndMode();
             
-    DrawText("PRESS F TO SWITCH CAMERA DIMENSION", 8, 8, 32, Color.ORANGE);
+    Color.ORANGE.DrawText("PRESS F TO SWITCH CAMERA DIMENSION", 8, 8, 32);
     
     EndDrawing();
 }
