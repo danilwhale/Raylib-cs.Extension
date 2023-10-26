@@ -7,6 +7,8 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.1</Version>
+        <PackageReleaseNotes>nothing new, just updating readme xd</PackageReleaseNotes>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -18,7 +20,6 @@
         <PackageIcon>Logo.png</PackageIcon>
         <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.Extensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
 
@@ -36,11 +37,6 @@
             <Pack>true</Pack>
             <PackagePath></PackagePath>
             <Link>LICENSE</Link>
-        </None>
-        <None Include="..\README.md">
-            <Pack>true</Pack>
-            <PackagePath></PackagePath>
-            <Link>README.md</Link>
         </None>
     </ItemGroup>
 
