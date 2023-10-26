@@ -4,6 +4,9 @@ namespace Raylib_cs.Extensions;
 
 public static partial class RayEx
 {
+    public static void Draw(this Ray ray, Color color)
+        => color.DrawRay(ray);
+    
     public static RayCollision GetRayCollisionSphere(this Ray ray, Vector3 center, float radius)
         => Raylib.GetRayCollisionSphere(ray, center, radius);
 

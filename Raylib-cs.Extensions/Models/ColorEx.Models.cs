@@ -61,6 +61,9 @@ public static partial class ColorEx
     public static void DrawPlane(this Color color, Vector3 center, Vector2 size)
         => Raylib.DrawPlane(center, size, color);
 
+    public static void DrawRay(this Color color, Ray ray)
+        => Raylib.DrawRay(ray, color);
+
     public static void DrawBoundingBox(this Color color, BoundingBox box)
         => Raylib.DrawBoundingBox(box, color);
 }
