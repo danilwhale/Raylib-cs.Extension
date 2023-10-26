@@ -4,6 +4,8 @@ namespace Raylib_cs.Extensions;
 
 public static partial class MeshEx
 {
+    public static Model LoadModel(this Mesh mesh) => Raylib.LoadModelFromMesh(mesh);
+    
     public static void Upload(this ref Mesh mesh, bool dynamic = false)
         => Raylib.UploadMesh(ref mesh, dynamic);
 

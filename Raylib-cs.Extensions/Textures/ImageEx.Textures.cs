@@ -4,6 +4,10 @@ namespace Raylib_cs.Extensions;
 
 public static partial class ImageEx
 {
+    public static Texture2D LoadTexture(this Image image) => Raylib.LoadTextureFromImage(image);
+    public static Texture2D LoadCubemap(this Image image, CubemapLayout layout) => Raylib.LoadTextureCubemap(image, layout);
+    
+    
     public static bool IsReady(this Image image)
         => Raylib.IsImageReady(image);
 

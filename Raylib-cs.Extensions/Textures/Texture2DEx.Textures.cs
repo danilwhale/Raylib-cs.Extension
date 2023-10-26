@@ -4,6 +4,9 @@ namespace Raylib_cs.Extensions;
 
 public static partial class Texture2DEx
 {
+    public static Image LoadImage(this Texture2D texture) => Raylib.LoadImageFromTexture(texture);
+    
+    
     public static bool IsReady(this Texture2D texture) => Raylib.IsTextureReady(texture);
     public static void Unload(this Texture2D texture) => Raylib.UnloadTexture(texture);
 
