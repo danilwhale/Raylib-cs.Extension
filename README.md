@@ -2,13 +2,10 @@
 # Raylib-cs.Extension
 ## attempt to make oop using extensions on top of raylib-cs
 
-Raylib-cs.Extension project is separated to folders inheriting original raylib module names:
-- Raylib_cs.Extension.Core - rcore
-- Raylib_cs.Extension.Shapes - rshapes
-
 todo:
 - implement modules
 - add comments to methods using cheatsheet
+- port examples
 
 there's also Raylib-cs.Extension.Game project to test things i made
 
