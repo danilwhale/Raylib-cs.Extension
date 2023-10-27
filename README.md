@@ -7,7 +7,10 @@
 todo:
 - port examples
 
-there's also Raylib-cs.Extensions.Game project to test things i made
+~~there's also Raylib-cs.Extensions.Game project to test things i made~~
+
+there's `Raylib-cs.Extensions.Examples` project with some of raylib examples ported.
+FeatureTest is `Raylib-cs.Extensions.Game`'s Program class, it won't be updated anymore :(
 
 ---
 
