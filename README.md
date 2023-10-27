@@ -1,4 +1,4 @@
-![epic library logo trust me its very epic](Assets/Logo.png)
+![epic library logo trust me its very epic](https://raw.githubusercontent.com/danilwhale/Raylib-cs.Extensions/main/Assets/Logo.png)
 [![Nuget](https://img.shields.io/nuget/v/Raylib-cs.Extensions)](https://www.nuget.org/packages/Raylib-cs.Extensions)
 
 # Raylib-cs.Extensions
