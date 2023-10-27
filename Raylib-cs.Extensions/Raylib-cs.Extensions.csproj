@@ -7,8 +7,12 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.1</Version>
-        <PackageReleaseNotes>nothing new, just updating readme xd</PackageReleaseNotes>
+        <Version>1.1.0</Version>
+        <PackageReleaseNotes>- add extra methods for Rectangle
+- added float argument overload for int methods
+- add human delegate callback setters
+- add missing extensions
+- add some useful methods</PackageReleaseNotes>
     </PropertyGroup>
     
     <PropertyGroup>
