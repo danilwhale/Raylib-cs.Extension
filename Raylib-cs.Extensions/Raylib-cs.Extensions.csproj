@@ -7,12 +7,14 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.1.0</Version>
-        <PackageReleaseNotes>- add extra methods for Rectangle
-- added float argument overload for int methods
-- add human delegate callback setters
-- add missing extensions
-- add some useful methods</PackageReleaseNotes>
+        <Version>1.2.0</Version>
+        <PackageReleaseNotes>
+            + add useful™ overloads for Shader (uniform name (string), custom index (int)) 
+            + add useful™ methods for Material (SetColor, SetValue, GetTexture, GetColor, GetValue)
+            + add useful™ methods for Model (GetMaterial, GetMaterialMap, and methods for interacting with material/material maps)
+            + add methods from rcamera for camera3d
+            - remove GetDroppedFiles (because Raylib-cs already implemented it)
+            ? ***Merge remote-tracking branch 'origin/main'***</PackageReleaseNotes>
     </PropertyGroup>
     
     <PropertyGroup>
