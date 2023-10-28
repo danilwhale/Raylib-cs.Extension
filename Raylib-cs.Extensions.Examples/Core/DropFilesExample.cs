@@ -34,7 +34,7 @@ public class DropFilesExample : IExample
             //----------------------------------------------------------------------------------
             if (IsFileDropped())
             {
-                string[] droppedFiles = RaylibEx.GetDroppedFiles();
+                string[] droppedFiles = GetDroppedFiles();
 
                 for (int i = 0, offset = filePathCounter; i < droppedFiles.Length; i++)
                 {
