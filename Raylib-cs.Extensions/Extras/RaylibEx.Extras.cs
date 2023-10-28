@@ -47,16 +47,6 @@ public static partial class RaylibEx
         Raylib.SetSaveFileTextCallback(rlDelegate);
     }
 
-    public static unsafe string[] GetDroppedFiles()
-    {
-        FilePathList rawFiles = Raylib.LoadDroppedFiles();
-
-        string[] files = GetFiles(rawFiles);
-        
-        Raylib.UnloadDroppedFiles(rawFiles);
-        return files;
-    }
-
     public static unsafe string[] GetFiles(FilePathList list)
     {
         string[] files = new string[list.count];
