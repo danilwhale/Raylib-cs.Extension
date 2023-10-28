@@ -66,6 +66,40 @@ public static partial class ShaderEx
     }
     
     /// <summary>
+    /// Set shader uniform value
+    /// </summary>
+    public static void SetValue<T>(this Shader shader, int index, T value, ShaderUniformDataType type)
+        where T : unmanaged
+    {
+        Raylib.SetShaderValue(shader, index, value, type);
+    }
+    
+    /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
+    public static void SetValue<T>(this Shader shader, int index, Span<T> values, ShaderUniformDataType type)
+        where T : unmanaged
+    {
+        Raylib.SetShaderValue(shader, index, values, type);
+    }
+    
+    /// <summary>
+    /// Set shader uniform value (matrix 4x4)
+    /// </summary>
+    public static void SetValue(this Shader shader, int index, Matrix4x4 matrix)
+    {
+        Raylib.SetShaderValueMatrix(shader, index, matrix);
+    }
+
+    /// <summary>
+    /// Set shader uniform value for texture (sampler2d)
+    /// </summary>
+    public static void SetValue(this Shader shader, int index, Texture2D texture)
+    {
+        Raylib.SetShaderValueTexture(shader, index, texture);
+    }
+    
+    /// <summary>
     /// Unload shader from GPU memory (VRAM)
     /// </summary>
     public static void Unload(this Shader shader) => Raylib.UnloadShader(shader);
