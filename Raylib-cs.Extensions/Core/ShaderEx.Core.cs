@@ -50,6 +50,15 @@ public static partial class ShaderEx
     }
     
     /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
+    public static unsafe void SetValue<T>(this Shader shader, ShaderLocationIndex index, T* values, ShaderUniformDataType type)
+        where T : unmanaged
+    {
+        Raylib.SetShaderValue(shader, (int)index, values, type);
+    }
+    
+    /// <summary>
     /// Set shader uniform value (matrix 4x4)
     /// </summary>
     public static void SetValue(this Shader shader, ShaderLocationIndex index, Matrix4x4 matrix)
@@ -84,6 +93,15 @@ public static partial class ShaderEx
     }
     
     /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
+    public static unsafe void SetValue<T>(this Shader shader, int index, T* values, ShaderUniformDataType type)
+        where T : unmanaged
+    {
+        Raylib.SetShaderValue(shader, index, values, type);
+    }
+    
+    /// <summary>
     /// Set shader uniform value (matrix 4x4)
     /// </summary>
     public static void SetValue(this Shader shader, int index, Matrix4x4 matrix)
@@ -112,6 +130,15 @@ public static partial class ShaderEx
     /// Set shader uniform value vector
     /// </summary>
     public static void SetValue<T>(this Shader shader, string uniformName, Span<T> values, ShaderUniformDataType type)
+        where T : unmanaged
+    {
+        Raylib.SetShaderValue(shader, shader.GetLocation(uniformName), values, type);
+    }
+    
+    /// <summary>
+    /// Set shader uniform value vector
+    /// </summary>
+    public static unsafe void SetValue<T>(this Shader shader, string uniformName, T* values, ShaderUniformDataType type)
         where T : unmanaged
     {
         Raylib.SetShaderValue(shader, shader.GetLocation(uniformName), values, type);
