@@ -1,4 +1,4 @@
-![epic library logo trust me its very epic](Assets/Logo.png)
+![epic library logo trust me its very epic](https://raw.githubusercontent.com/danilwhale/Raylib-cs.Extensions/main/Assets/Logo.png)
 [![Nuget](https://img.shields.io/nuget/v/Raylib-cs.Extensions)](https://www.nuget.org/packages/Raylib-cs.Extensions)
 
 # Raylib-cs.Extensions
@@ -7,7 +7,10 @@
 todo:
 - port examples
 
-there's also Raylib-cs.Extensions.Game project to test things i made
+~~there's also Raylib-cs.Extensions.Game project to test things i made~~
+
+there's `Raylib-cs.Extensions.Examples` project with some of raylib examples ported.
+FeatureTest is `Raylib-cs.Extensions.Game`'s Program class, it won't be updated anymore :(
 
 ---
 
