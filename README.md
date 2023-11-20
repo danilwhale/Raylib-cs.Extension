@@ -1,3 +1,5 @@
+# this project is kinda abandoned, sorry. maybe some day i will have motivation to update it to raylib-cs 5.0.0
+
 ![epic library logo trust me its very epic](https://raw.githubusercontent.com/danilwhale/Raylib-cs.Extensions/main/Assets/Logo.png)
 [![Nuget](https://img.shields.io/nuget/v/Raylib-cs.Extensions)](https://www.nuget.org/packages/Raylib-cs.Extensions)
 
