@@ -13,11 +13,11 @@ public class RandomValuesExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - generate random values");
 
-        // SetRandomSeed(0xaabbccff);   // Set a custom random seed if desired, by default: "time(NULL)"
+        // SetRandomSeed(0xaabbccff);   // Set a custom random seed if desired, by default: "time(Null)"
 
-        int randValue = GetRandomValue(-8, 5); // Get a random integer number between -8 and 5 (both included)
+        var randValue = GetRandomValue(-8, 5); // Get a random integer number between -8 and 5 (both included)
 
-        int framesCounter = 0; // Variable used to count frames
+        var framesCounter = 0; // Variable used to count frames
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ public class RandomValuesExample : IExample
             framesCounter++;
 
             // Every two seconds (120 frames) a new random value is generated
-            if (((framesCounter / 120) % 2) == 1)
+            if (framesCounter / 120 % 2 == 1)
             {
                 randValue = GetRandomValue(-8, 5);
                 framesCounter = 0;
@@ -41,11 +41,11 @@ public class RandomValuesExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
-                Color.MAROON.DrawText("Every 2 seconds a new random value is generated:", 130, 100, 20);
+                Color.Maroon.DrawText("Every 2 seconds a new random value is generated:", 130, 100, 20);
 
-                Color.LIGHTGRAY.DrawText(randValue.ToString(), 360, 180, 80);
+                Color.LightGray.DrawText(randValue.ToString(), 360, 180, 80);
             }
             EndDrawing();
             //----------------------------------------------------------------------------------

@@ -12,17 +12,17 @@ public class CustomFrameControlExample : IExample
         InitWindow(screenWidth, screenHeight, "raylib [core] example - custom frame control");
 
         // Custom timming variables
-        double previousTime = GetTime(); // Previous time measure
-        double currentTime = 0.0; // Current time measure
-        double updateDrawTime = 0.0; // Update + Draw time
-        double waitTime = 0.0; // Wait time (if target fps required)
-        float deltaTime = 0.0f; // Frame time (Update + Draw + Wait time)
+        var previousTime = GetTime(); // Previous time measure
+        var currentTime = 0.0; // Current time measure
+        var updateDrawTime = 0.0; // Update + Draw time
+        var waitTime = 0.0; // Wait time (if target fps required)
+        var deltaTime = 0.0f; // Frame time (Update + Draw + Wait time)
 
-        float timeCounter = 0.0f; // Accumulative time counter (seconds)
-        float position = 0.0f; // Circle position
-        bool pause = false; // Pause control flag
+        var timeCounter = 0.0f; // Accumulative time counter (seconds)
+        var position = 0.0f; // Circle position
+        var pause = false; // Pause control flag
 
-        int targetFPS = 60; // Our initial target fps
+        var targetFPS = 60; // Our initial target fps
         //--------------------------------------------------------------------------------------
 
         // Main game loop
@@ -30,16 +30,16 @@ public class CustomFrameControlExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            
+
             // raylib-cs' dll is built without SUPPORT_CUSTOM_FRAME_CONTROL
             // if you want to, you can rebuild raylib dll with this flag
             // and uncomment method lower
             // PollInputEvents(); // Poll input events (SUPPORT_CUSTOM_FRAME_CONTROL)
 
-            if (IsKeyPressed(KeyboardKey.KEY_SPACE)) pause = !pause;
+            if (IsKeyPressed(KeyboardKey.Space)) pause = !pause;
 
-            if (IsKeyPressed(KeyboardKey.KEY_UP)) targetFPS += 20;
-            else if (IsKeyPressed(KeyboardKey.KEY_DOWN)) targetFPS -= 20;
+            if (IsKeyPressed(KeyboardKey.Up)) targetFPS += 20;
+            else if (IsKeyPressed(KeyboardKey.Down)) targetFPS -= 20;
 
             if (targetFPS < 0) targetFPS = 0;
 
@@ -55,26 +55,28 @@ public class CustomFrameControlExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
-                for (int i = 0; i < GetScreenWidth() / 200; i++) Color.SKYBLUE.DrawRectangle(200 * i, 0, 1, GetScreenHeight());
+                for (var i = 0; i < GetScreenWidth() / 200; i++)
+                    Color.SkyBlue.DrawRectangle(200 * i, 0, 1, GetScreenHeight());
 
-                Color.RED.DrawCircle(position, GetScreenHeight() / 2f - 25, 50);
+                Color.Red.DrawCircle(position, GetScreenHeight() / 2f - 25, 50);
 
-                Color.MAROON.DrawText($"{timeCounter:0000.0} ms", position - 40, GetScreenHeight() / 2f - 100, 20);
-                Color.BLACK.DrawText($"PosX: {position:0000.0}", position - 50, GetScreenHeight() / 2 + 40, 20);
+                Color.Maroon.DrawText($"{timeCounter:0000.0} ms", position - 40, GetScreenHeight() / 2f - 100, 20);
+                Color.Black.DrawText($"PosX: {position:0000.0}", position - 50, GetScreenHeight() / 2 + 40, 20);
 
-                Color.DARKGRAY.DrawText("Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20);
-                Color.GRAY.DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20);
-                Color.GRAY.DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20);
-                Color.LIME.DrawText($"TARGET FPS: {targetFPS}", GetScreenWidth() - 220, 10, 20);
-                Color.GREEN.DrawText($"CURRENT FPS: {(int)(1.0f / deltaTime)}", GetScreenWidth() - 220, 40, 20);
+                Color.DarkGray.DrawText(
+                    "Circle is moving at a constant 200 pixels/sec,\nindependently of the frame rate.", 10, 10, 20);
+                Color.Gray.DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20);
+                Color.Gray.DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20);
+                Color.Lime.DrawText($"TARGET FPS: {targetFPS}", GetScreenWidth() - 220, 10, 20);
+                Color.Green.DrawText($"CURRENT FPS: {(int)(1.0f / deltaTime)}", GetScreenWidth() - 220, 40, 20);
             }
             EndDrawing();
 
             // NOTE: In case raylib is configured to SUPPORT_CUSTOM_FRAME_CONTROL, 
             // Events polling, screen buffer swap and frame time control must be managed by the user
-            
+
             // raylib-cs' dll is built without SUPPORT_CUSTOM_FRAME_CONTROL
             // if you want to, you can rebuild raylib dll with this flag
             // and uncomment method lower
@@ -93,7 +95,10 @@ public class CustomFrameControlExample : IExample
                     deltaTime = (float)(currentTime - previousTime);
                 }
             }
-            else deltaTime = (float)updateDrawTime; // Framerate could be variable
+            else
+            {
+                deltaTime = (float)updateDrawTime; // Framerate could be variable
+            }
 
             previousTime = currentTime;
             //----------------------------------------------------------------------------------

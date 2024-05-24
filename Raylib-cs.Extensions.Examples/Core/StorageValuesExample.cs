@@ -4,13 +4,6 @@ public class StorageValuesExample : IExample
 {
     public const string StorageDataFile = "storage.data";
 
-    // NOTE: Storage positions must start with 0, directly related to file memory layout
-    private enum StorageData : uint
-    {
-        PositionScore = 0,
-        PositionHiScore = 1
-    }
-
     public void Run(string[] args)
     {
         // Initialization
@@ -20,10 +13,10 @@ public class StorageValuesExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - storage save/load values");
 
-        int score = 0;
-        int hiscore = 0;
-        int framesCounter = 0;
-        Random random = new Random();
+        var score = 0;
+        var hiscore = 0;
+        var framesCounter = 0;
+        var random = new Random();
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -33,18 +26,18 @@ public class StorageValuesExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
                 score = random.Next(1000, 2000);
                 hiscore = random.Next(2000, 4000);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+            if (IsKeyPressed(KeyboardKey.Enter))
             {
                 SaveStorageValue(StorageData.PositionScore, score);
                 SaveStorageValue(StorageData.PositionHiScore, hiscore);
             }
-            else if (IsKeyPressed(KeyboardKey.KEY_SPACE))
+            else if (IsKeyPressed(KeyboardKey.Space))
             {
                 // NOTE: If requested position could not be found, value 0 is returned
                 score = LoadStorageValue(StorageData.PositionScore);
@@ -58,16 +51,16 @@ public class StorageValuesExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
-                Color.MAROON.DrawText($"SCORE: {score}", 280, 130, 40);
-                Color.BLACK.DrawText($"HI-SCORE: {hiscore}", 210, 200, 50);
+                Color.Maroon.DrawText($"SCORE: {score}", 280, 130, 40);
+                Color.Black.DrawText($"HI-SCORE: {hiscore}", 210, 200, 50);
 
-                Color.LIME.DrawText($"frames: {framesCounter}", 10, 10, 20);
+                Color.Lime.DrawText($"frames: {framesCounter}", 10, 10, 20);
 
-                Color.DARKGRAY.DrawText("Press R to generate random numbers", 220, 40, 20);
-                Color.DARKGRAY.DrawText("Press ENTER to SAVE values", 250, 310, 20);
-                Color.DARKGRAY.DrawText("Press SPACE to LOAD values", 252, 350, 20);
+                Color.DarkGray.DrawText("Press R to generate random numbers", 220, 40, 20);
+                Color.DarkGray.DrawText("Press ENTER to SAVE values", 250, 310, 20);
+                Color.DarkGray.DrawText("Press SPACE to LOAD values", 252, 350, 20);
             }
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -78,21 +71,21 @@ public class StorageValuesExample : IExample
         CloseWindow(); // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
     }
-    
+
     // TODO: simplificate using c# streams
     private static unsafe bool SaveStorageValue(StorageData position, int value)
     {
-        using AnsiBuffer buffer = StorageDataFile.ToAnsiBuffer();
+        using var buffer = StorageDataFile.ToAnsiBuffer();
 
-        bool success = false;
+        var success = false;
         uint dataSize = 0;
         uint newDataSize = 0;
-        byte* fileData = LoadFileData(buffer.AsPointer(), &dataSize);
+        var fileData = LoadFileData(buffer.AsPointer(), &dataSize);
         byte* newFileData = null;
 
         if (fileData != null)
         {
-            if (dataSize <= ((uint)position * sizeof(int)))
+            if (dataSize <= (uint)position * sizeof(int))
             {
                 // Increase data size up to position and store value
                 newDataSize = ((uint)position + 1) * sizeof(int);
@@ -101,13 +94,13 @@ public class StorageValuesExample : IExample
                 if (newFileData != null)
                 {
                     // Reallocate succeded
-                    int* dataPtr = (int*)newFileData;
+                    var dataPtr = (int*)newFileData;
                     dataPtr[(int)position] = value;
                 }
                 else
                 {
                     // RL_REALLOC failed
-                    TraceLog(TraceLogLevel.LOG_WARNING,
+                    TraceLog(TraceLogLevel.Warning,
                         string.Format(
                             "FILEIO: [{0}] Failed to realloc data ({1}), position in bytes ({2}) bigger than actual file size",
                             StorageDataFile,
@@ -128,55 +121,66 @@ public class StorageValuesExample : IExample
                 newDataSize = dataSize;
 
                 // Replace value on selected position
-                int* dataPtr = (int*)newFileData;
+                var dataPtr = (int*)newFileData;
                 dataPtr[(int)position] = value;
             }
 
             success = SaveFileData(buffer.AsPointer(), newFileData, newDataSize);
             MemFree(newFileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{StorageDataFile}] Saved storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{StorageDataFile}] Saved storage value: {value}");
         }
         else
         {
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{StorageDataFile}] File created successfully");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{StorageDataFile}] File created successfully");
 
             dataSize = ((uint)position + 1) * sizeof(int);
             fileData = (byte*)MemAlloc((int)dataSize);
-            int* dataPtr = (int*)fileData;
+            var dataPtr = (int*)fileData;
             dataPtr[(int)position] = value;
 
             success = SaveFileData(buffer.AsPointer(), fileData, dataSize);
             UnloadFileData(fileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{StorageDataFile}] Saved storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{StorageDataFile}] Saved storage value: {value}");
         }
 
         return success;
     }
-    
+
     // TODO: simplificate using c# streams
     private static unsafe int LoadStorageValue(StorageData position)
     {
         using var buffer = StorageDataFile.ToAnsiBuffer();
-        int value = 0;
+        var value = 0;
         uint dataSize = 0;
-        byte*fileData = LoadFileData(buffer.AsPointer(), &dataSize);
+        var fileData = LoadFileData(buffer.AsPointer(), &dataSize);
 
         if (fileData != null)
         {
-            if (dataSize < ((uint)position*4)) TraceLog(TraceLogLevel.LOG_WARNING, $"FILEIO: [{StorageDataFile}] Failed to find storage position: {position}");
+            if (dataSize < (uint)position * 4)
+            {
+                TraceLog(TraceLogLevel.Warning,
+                    $"FILEIO: [{StorageDataFile}] Failed to find storage position: {position}");
+            }
             else
             {
-                int *dataPtr = (int *)fileData;
+                var dataPtr = (int*)fileData;
                 value = dataPtr[(int)position];
             }
 
             UnloadFileData(fileData);
 
-            TraceLog(TraceLogLevel.LOG_INFO, $"FILEIO: [{StorageDataFile}] Loaded storage value: {value}");
+            TraceLog(TraceLogLevel.Info, $"FILEIO: [{StorageDataFile}] Loaded storage value: {value}");
         }
 
         return value;
+    }
+
+    // NOTE: Storage positions must start with 0, directly related to file memory layout
+    private enum StorageData : uint
+    {
+        PositionScore = 0,
+        PositionHiScore = 1
     }
 }

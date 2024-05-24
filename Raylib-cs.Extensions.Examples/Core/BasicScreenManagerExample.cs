@@ -2,14 +2,6 @@ namespace Raylib_cs.Extensions.Game.Core;
 
 public class BasicScreenManagerExample : IExample
 {
-    private enum GameScreen
-    {
-        Logo,
-        Title,
-        Gameplay,
-        Ending
-    }
-
     public void Run(string[] args)
     {
         // Initialization
@@ -19,11 +11,11 @@ public class BasicScreenManagerExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic screen manager");
 
-        GameScreen currentScreen = GameScreen.Logo;
+        var currentScreen = GameScreen.Logo;
 
         // TODO: Initialize all required variables and load all required data here!
 
-        int framesCounter = 0; // Useful to count frames
+        var framesCounter = 0; // Useful to count frames
 
         SetTargetFPS(60); // Set desired framerate (frames-per-second)
         //--------------------------------------------------------------------------------------
@@ -42,10 +34,7 @@ public class BasicScreenManagerExample : IExample
                     framesCounter++; // Count frames
 
                     // Wait for 2 seconds (120 frames) before jumping to TITLE screen
-                    if (framesCounter > 120)
-                    {
-                        currentScreen = GameScreen.Title;
-                    }
+                    if (framesCounter > 120) currentScreen = GameScreen.Title;
 
                     break;
                 case GameScreen.Title:
@@ -53,10 +42,8 @@ public class BasicScreenManagerExample : IExample
                     // TODO: Update TITLE screen variables here!
 
                     // Press enter to change to GAMEPLAY screen
-                    if (IsKeyPressed(KeyboardKey.KEY_ENTER) || IsGestureDetected(Gesture.GESTURE_TAP))
-                    {
+                    if (IsKeyPressed(KeyboardKey.Enter) || IsGestureDetected(Gesture.Tap))
                         currentScreen = GameScreen.Gameplay;
-                    }
 
                     break;
                 case GameScreen.Gameplay:
@@ -64,10 +51,8 @@ public class BasicScreenManagerExample : IExample
                     // TODO: Update GAMEPLAY screen variables here!
 
                     // Press enter to change to ENDING screen
-                    if (IsKeyPressed(KeyboardKey.KEY_ENTER) || IsGestureDetected(Gesture.GESTURE_TAP))
-                    {
+                    if (IsKeyPressed(KeyboardKey.Enter) || IsGestureDetected(Gesture.Tap))
                         currentScreen = GameScreen.Ending;
-                    }
 
                     break;
                 case GameScreen.Ending:
@@ -75,10 +60,8 @@ public class BasicScreenManagerExample : IExample
                     // TODO: Update ENDING screen variables here!
 
                     // Press enter to return to TITLE screen
-                    if (IsKeyPressed(KeyboardKey.KEY_ENTER) || IsGestureDetected(Gesture.GESTURE_TAP))
-                    {
+                    if (IsKeyPressed(KeyboardKey.Enter) || IsGestureDetected(Gesture.Tap))
                         currentScreen = GameScreen.Title;
-                    }
 
                     break;
             }
@@ -88,39 +71,39 @@ public class BasicScreenManagerExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 switch (currentScreen)
                 {
                     case GameScreen.Logo:
 
                         // TODO: Draw LOGO screen here!
-                        Color.LIGHTGRAY.DrawText("LOGO SCREEN", 20, 20, 40);
-                        Color.GRAY.DrawText("WAIT for 2 SECONDS...", 290, 220, 20);
+                        Color.LightGray.DrawText("LOGO SCREEN", 20, 20, 40);
+                        Color.Gray.DrawText("WAIT for 2 SECONDS...", 290, 220, 20);
 
                         break;
                     case GameScreen.Title:
 
                         // TODO: Draw TITLE screen here!
-                        Color.GREEN.DrawRectangle(0, 0, screenWidth, screenHeight);
-                        Color.DARKGREEN.DrawText("TITLE SCREEN", 20, 20, 40);
-                        Color.DARKGREEN.DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20);
+                        Color.Green.DrawRectangle(0, 0, screenWidth, screenHeight);
+                        Color.DarkGreen.DrawText("TITLE SCREEN", 20, 20, 40);
+                        Color.DarkGreen.DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20);
 
                         break;
                     case GameScreen.Gameplay:
 
                         // TODO: Draw GAMEPLAY screen here!
-                        Color.PURPLE.DrawRectangle(0, 0, screenWidth, screenHeight);
-                        Color.MAROON.DrawText("GAMEPLAY SCREEN", 20, 20, 40);
-                        Color.MAROON.DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20);
+                        Color.Purple.DrawRectangle(0, 0, screenWidth, screenHeight);
+                        Color.Maroon.DrawText("GAMEPLAY SCREEN", 20, 20, 40);
+                        Color.Maroon.DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20);
 
                         break;
                     case GameScreen.Ending:
 
                         // TODO: Draw ENDING screen here!
-                        Color.BLUE.DrawRectangle(0, 0, screenWidth, screenHeight);
-                        Color.DARKBLUE.DrawText("ENDING SCREEN", 20, 20, 40);
-                        Color.DARKBLUE.DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20);
+                        Color.Blue.DrawRectangle(0, 0, screenWidth, screenHeight);
+                        Color.DarkBlue.DrawText("ENDING SCREEN", 20, 20, 40);
+                        Color.DarkBlue.DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20);
 
                         break;
                 }
@@ -136,5 +119,13 @@ public class BasicScreenManagerExample : IExample
 
         CloseWindow(); // Close window and OpenGL context
         //--------------------------------------------------------------------------------------
+    }
+
+    private enum GameScreen
+    {
+        Logo,
+        Title,
+        Gameplay,
+        Ending
     }
 }

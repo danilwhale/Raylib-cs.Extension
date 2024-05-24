@@ -3,38 +3,50 @@ namespace Raylib_cs.Extensions;
 public static partial class MaterialEx
 {
     /// <summary>
-    /// Sets color for specified material map
+    ///     Sets color for specified material map
     /// </summary>
     public static unsafe void SetColor(this Material material, MaterialMapIndex index, Color color)
-        => material.maps[(int)index].color = color;
-    
+    {
+        material.Maps[(int)index].Color = color;
+    }
+
     /// <summary>
-    /// Sets value for specified material map
+    ///     Sets value for specified material map
     /// </summary>
     public static unsafe void SetValue(this Material material, MaterialMapIndex index, float value)
-        => material.maps[(int)index].value = value;
-    
+    {
+        material.Maps[(int)index].Value = value;
+    }
+
     /// <summary>
-    /// Gets texture of specified material map
+    ///     Gets texture of specified material map
     /// </summary>
     public static unsafe Texture2D GetTexture(this Material material, MaterialMapIndex index)
-        => material.maps[(int)index].texture;
-    
+    {
+        return material.Maps[(int)index].Texture;
+    }
+
     /// <summary>
-    /// Gets color of specified material map
+    ///     Gets color of specified material map
     /// </summary>
     public static unsafe Color GetColor(this Material material, MaterialMapIndex index)
-        => material.maps[(int)index].color;
-    
+    {
+        return material.Maps[(int)index].Color;
+    }
+
     /// <summary>
-    /// Gets value of specified material map
+    ///     Gets value of specified material map
     /// </summary>
     public static unsafe float GetValue(this Material material, MaterialMapIndex index)
-        => material.maps[(int)index].value;
-    
+    {
+        return material.Maps[(int)index].Value;
+    }
+
     /// <summary>
-    /// Gets specified material map
+    ///     Gets specified material map
     /// </summary>
     public static unsafe MaterialMap GetMap(this Material material, MaterialMapIndex index)
-        => material.maps[(int)index];
+    {
+        return material.Maps[(int)index];
+    }
 }

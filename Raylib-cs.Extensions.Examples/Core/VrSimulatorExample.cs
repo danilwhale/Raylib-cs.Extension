@@ -18,65 +18,65 @@ public class VrSimulatorExample : IExample
 
         // VR device parameters definition
 
-        VrDeviceInfo device = new VrDeviceInfo()
+        var device = new VrDeviceInfo
         {
             // Oculus Rift CV1 parameters for simulator
-            hResolution = 2160, // Horizontal resolution in pixels
-            vResolution = 1200, // Vertical resolution in pixels
-            hScreenSize = 0.133793f, // Horizontal size in meters
-            vScreenSize = 0.0669f, // Vertical size in meters
-            vScreenCenter = 0.04678f, // Screen center in meters
-            eyeToScreenDistance = 0.041f, // Distance between eye and display in meters
-            lensSeparationDistance = 0.07f, // Lens separation distance in meters
-            interpupillaryDistance = 0.07f, // IPD (distance between pupils) in meters
+            HResolution = 2160, // Horizontal resolution in pixels
+            VResolution = 1200, // Vertical resolution in pixels
+            HScreenSize = 0.133793f, // Horizontal size in meters
+            VScreenSize = 0.0669f, // Vertical size in meters
+            VScreenCenter = 0.04678f, // Screen center in meters
+            EyeToScreenDistance = 0.041f, // Distance between eye and display in meters
+            LensSeparationDistance = 0.07f, // Lens separation distance in meters
+            InterpupillaryDistance = 0.07f // IPD (distance between pupils) in meters
         };
 
         // NOTE: CV1 uses fresnel-hybrid-asymmetric lenses with specific compute shaders
         // Following parameters are just an approximation to CV1 distortion stereo rendering
-        device.lensDistortionValues[0] = 1.0f; // Lens distortion constant parameter 0
-        device.lensDistortionValues[1] = 0.22f; // Lens distortion constant parameter 1
-        device.lensDistortionValues[2] = 0.24f; // Lens distortion constant parameter 2
-        device.lensDistortionValues[3] = 0.0f; // Lens distortion constant parameter 3
-        device.chromaAbCorrection[0] = 0.996f; // Chromatic aberration correction parameter 0
-        device.chromaAbCorrection[1] = -0.004f; // Chromatic aberration correction parameter 1
-        device.chromaAbCorrection[2] = 1.014f; // Chromatic aberration correction parameter 2
-        device.chromaAbCorrection[3] = 0.0f; // Chromatic aberration correction parameter 3
+        device.LensDistortionValues[0] = 1.0f; // Lens distortion constant parameter 0
+        device.LensDistortionValues[1] = 0.22f; // Lens distortion constant parameter 1
+        device.LensDistortionValues[2] = 0.24f; // Lens distortion constant parameter 2
+        device.LensDistortionValues[3] = 0.0f; // Lens distortion constant parameter 3
+        device.ChromaAbCorrection[0] = 0.996f; // Chromatic aberration correction parameter 0
+        device.ChromaAbCorrection[1] = -0.004f; // Chromatic aberration correction parameter 1
+        device.ChromaAbCorrection[2] = 1.014f; // Chromatic aberration correction parameter 2
+        device.ChromaAbCorrection[3] = 0.0f; // Chromatic aberration correction parameter 3
 
         // Load VR stereo config for VR device parameteres (Oculus Rift CV1 parameters)
-        VrStereoConfig config = device.LoadConfig();
+        var config = device.LoadConfig();
 
         // Distortion shader (uses device lens distortion and chroma)
-        Shader distortion = LoadShader(null, $"Assets/Shaders/Distortion/GL{GlslVersion}.frag");
+        var distortion = LoadShader(null, $"Assets/Shaders/Distortion/GL{GlslVersion}.frag");
 
         // Update distortion shader with lens and distortion-scale parameters
-        distortion.SetValue("leftLensCenter", config.leftLensCenter, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        distortion.SetValue("rightLensCenter", config.rightLensCenter, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        distortion.SetValue("leftScreenCenter", config.leftScreenCenter, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        distortion.SetValue("rightScreenCenter",config.rightScreenCenter, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-    
-        distortion.SetValue("scale", config.scale, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        distortion.SetValue("scaleIn", config.scaleIn, ShaderUniformDataType.SHADER_UNIFORM_VEC2);
-        distortion.SetValue("deviceWarpParam", device.lensDistortionValues, ShaderUniformDataType.SHADER_UNIFORM_VEC4);
-        distortion.SetValue("chromaAbParam", device.chromaAbCorrection, ShaderUniformDataType.SHADER_UNIFORM_VEC4);
+        distortion.SetValue("leftLensCenter", config.LeftLensCenter, ShaderUniformDataType.Vec2);
+        distortion.SetValue("rightLensCenter", config.RightLensCenter, ShaderUniformDataType.Vec2);
+        distortion.SetValue("leftScreenCenter", config.LeftScreenCenter, ShaderUniformDataType.Vec2);
+        distortion.SetValue("rightScreenCenter", config.RightScreenCenter, ShaderUniformDataType.Vec2);
+
+        distortion.SetValue("scale", config.Scale, ShaderUniformDataType.Vec2);
+        distortion.SetValue("scaleIn", config.ScaleIn, ShaderUniformDataType.Vec2);
+        distortion.SetValue("deviceWarpParam", device.LensDistortionValues, ShaderUniformDataType.Vec4);
+        distortion.SetValue("chromaAbParam", device.ChromaAbCorrection, ShaderUniformDataType.Vec4);
 
         // Initialize framebuffer for stereo rendering
         // NOTE: Screen size should match HMD aspect ratio
-        RenderTexture2D target = LoadRenderTexture(device.hResolution, device.vResolution);
+        var target = LoadRenderTexture(device.HResolution, device.VResolution);
 
         // The target's height is flipped (in the source Rectangle), due to OpenGL reasons
-        Rectangle sourceRec = new Rectangle(0.0f, 0.0f, target.texture.width, -target.texture.height);
-        Rectangle destRec = new Rectangle(0.0f, 0.0f, GetScreenWidth(), GetScreenHeight());
+        var sourceRec = new Rectangle(0.0f, 0.0f, target.Texture.Width, -target.Texture.Height);
+        var destRec = new Rectangle(0.0f, 0.0f, GetScreenWidth(), GetScreenHeight());
 
         // Define the camera to look into our 3d world
-        Camera3D camera = new Camera3D(
+        var camera = new Camera3D(
             new Vector3(5.0f, 2.0f, 5.0f), // Camera position
             new Vector3(0.0f, 2.0f, 0.0f), // Camera looking at point
             Vector3.UnitY, // Camera up vector
             60.0f, // Camera field-of-view Y
-            CameraProjection.CAMERA_PERSPECTIVE // Camera projection type
-            );
+            CameraProjection.Perspective // Camera projection type
+        );
 
-        Vector3 cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
+        var cubePosition = new Vector3(0.0f, 0.0f, 0.0f);
 
         DisableCursor(); // Limit cursor to relative movement inside the window
 
@@ -88,20 +88,20 @@ public class VrSimulatorExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            camera.Update(CameraMode.CAMERA_FIRST_PERSON);
+            camera.Update(CameraMode.FirstPerson);
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             target.BeginMode();
             {
-                Color.RAYWHITE.ClearBackground();
-                
+                Color.RayWhite.ClearBackground();
+
                 config.BeginMode();
                 camera.BeginMode();
                 {
-                    Color.RED.DrawCube(cubePosition, 2.0f, 2.0f, 2.0f);
-                    Color.MAROON.DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f);
+                    Color.Red.DrawCube(cubePosition, 2.0f, 2.0f, 2.0f);
+                    Color.Maroon.DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f);
                     DrawGrid(40, 1.0f);
                 }
                 camera.EndMode();
@@ -111,14 +111,14 @@ public class VrSimulatorExample : IExample
 
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
-                
+                Color.RayWhite.ClearBackground();
+
                 distortion.BeginMode();
                 {
-                    target.texture.Draw(sourceRec, destRec, Vector2.Zero, 0.0f, Color.WHITE);
+                    target.Texture.Draw(sourceRec, destRec, Vector2.Zero, 0.0f, Color.White);
                 }
                 distortion.EndMode();
-                
+
                 DrawFPS(10, 10);
             }
             EndDrawing();

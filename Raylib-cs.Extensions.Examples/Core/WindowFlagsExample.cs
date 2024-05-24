@@ -11,30 +11,30 @@ public class WindowFlagsExample : IExample
 
         // Possible window flags
         /*
-        ConfigFlags.FLAG_VSYNC_HINT
-        ConfigFlags.FLAG_FULLSCREEN_MODE    -> not working properly -> wrong scaling!
-        ConfigFlags.FLAG_WINDOW_RESIZABLE
-        ConfigFlags.FLAG_WINDOW_UNDECORATED
-        ConfigFlags.FLAG_WINDOW_TRANSPARENT
-        ConfigFlags.FLAG_WINDOW_HIDDEN
-        ConfigFlags.FLAG_WINDOW_MINIMIZED   -> Not supported on window creation
-        ConfigFlags.FLAG_WINDOW_MAXIMIZED   -> Not supported on window creation
-        ConfigFlags.FLAG_WINDOW_UNFOCUSED
-        ConfigFlags.FLAG_WINDOW_TOPMOST
-        ConfigFlags.FLAG_WINDOW_HIGHDPI     -> errors after minimize-resize, fb size is recalculated
-        ConfigFlags.FLAG_WINDOW_ALWAYS_RUN
-        ConfigFlags.FLAG_MSAA_4X_HINT
+        ConfigFlags.VSyncHint
+        ConfigFlags.FullscreenMode    -> not working properly -> wrong scaling!
+        ConfigFlags.ResizableWindow
+        ConfigFlags.UndecoratedWindow
+        ConfigFlags.TransparentWindow
+        ConfigFlags.HiddenWindow
+        ConfigFlags.MinimizedWindow   -> Not supported on window creation
+        ConfigFlags.MaximizedWindow   -> Not supported on window creation
+        ConfigFlags.UnfocusedWindow
+        ConfigFlags.TopmostWindow
+        ConfigFlags.HighDpiWindow     -> errors after minimize-resize, fb size is recalculated
+        ConfigFlags.AlwaysRunWindow
+        ConfigFlags.Msaa4xHint
         */
 
         // Set configuration flags for window creation
-        //SetConfigFlags(ConfigFlags.FLAG_VSYNC_HINT | ConfigFlags.FLAG_MSAA_4X_HINT | ConfigFlags.FLAG_WINDOW_HIGHDPI);
+        //SetConfigFlags(ConfigFlags.VSyncHint | ConfigFlags.Msaa4xHint | ConfigFlags.HighDpiWindow);
         InitWindow(screenWidth, screenHeight, "raylib [core] example - window flags");
 
-        Vector2 ballPosition = new Vector2(GetScreenWidth(), GetScreenHeight()) / 2f;
-        Vector2 ballSpeed = new Vector2(5.0f, 4.0f);
+        var ballPosition = new Vector2(GetScreenWidth(), GetScreenHeight()) / 2f;
+        var ballSpeed = new Vector2(5.0f, 4.0f);
         float ballRadius = 20;
 
-        int framesCounter = 0;
+        var framesCounter = 0;
 
         // SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
         //----------------------------------------------------------
@@ -44,75 +44,75 @@ public class WindowFlagsExample : IExample
         {
             // Update
             //-----------------------------------------------------
-            if (IsKeyPressed(KeyboardKey.KEY_F)) ToggleFullscreen(); // modifies window size when scaling!
+            if (IsKeyPressed(KeyboardKey.F)) ToggleFullscreen(); // modifies window size when scaling!
 
-            if (IsKeyPressed(KeyboardKey.KEY_R))
+            if (IsKeyPressed(KeyboardKey.R))
             {
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE)) ClearWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE);
-                else SetWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE);
+                if (IsWindowState(ConfigFlags.ResizableWindow)) ClearWindowState(ConfigFlags.ResizableWindow);
+                else SetWindowState(ConfigFlags.ResizableWindow);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_D))
+            if (IsKeyPressed(KeyboardKey.D))
             {
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_UNDECORATED)) ClearWindowState(ConfigFlags.FLAG_WINDOW_UNDECORATED);
-                else SetWindowState(ConfigFlags.FLAG_WINDOW_UNDECORATED);
+                if (IsWindowState(ConfigFlags.UndecoratedWindow)) ClearWindowState(ConfigFlags.UndecoratedWindow);
+                else SetWindowState(ConfigFlags.UndecoratedWindow);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_H))
+            if (IsKeyPressed(KeyboardKey.H))
             {
-                if (!IsWindowState(ConfigFlags.FLAG_WINDOW_HIDDEN)) SetWindowState(ConfigFlags.FLAG_WINDOW_HIDDEN);
+                if (!IsWindowState(ConfigFlags.HiddenWindow)) SetWindowState(ConfigFlags.HiddenWindow);
 
                 framesCounter = 0;
             }
 
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_HIDDEN))
+            if (IsWindowState(ConfigFlags.HiddenWindow))
             {
                 framesCounter++;
-                if (framesCounter >= 240) ClearWindowState(ConfigFlags.FLAG_WINDOW_HIDDEN); // Show window after 3 seconds
+                if (framesCounter >= 240) ClearWindowState(ConfigFlags.HiddenWindow); // Show window after 3 seconds
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_N))
+            if (IsKeyPressed(KeyboardKey.N))
             {
-                if (!IsWindowState(ConfigFlags.FLAG_WINDOW_MINIMIZED)) MinimizeWindow();
+                if (!IsWindowState(ConfigFlags.MinimizedWindow)) MinimizeWindow();
 
                 framesCounter = 0;
             }
 
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_MINIMIZED))
+            if (IsWindowState(ConfigFlags.MinimizedWindow))
             {
                 framesCounter++;
                 if (framesCounter >= 240) RestoreWindow(); // Restore window after 3 seconds
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_M))
+            if (IsKeyPressed(KeyboardKey.M))
             {
-                // NOTE: Requires ConfigFlags.FLAG_WINDOW_RESIZABLE enabled!
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_MAXIMIZED)) RestoreWindow();
+                // NOTE: Requires ConfigFlags.ResizableWindow enabled!
+                if (IsWindowState(ConfigFlags.MaximizedWindow)) RestoreWindow();
                 else MaximizeWindow();
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_U))
+            if (IsKeyPressed(KeyboardKey.U))
             {
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_UNFOCUSED)) ClearWindowState(ConfigFlags.FLAG_WINDOW_UNFOCUSED);
-                else SetWindowState(ConfigFlags.FLAG_WINDOW_UNFOCUSED);
+                if (IsWindowState(ConfigFlags.UnfocusedWindow)) ClearWindowState(ConfigFlags.UnfocusedWindow);
+                else SetWindowState(ConfigFlags.UnfocusedWindow);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_T))
+            if (IsKeyPressed(KeyboardKey.T))
             {
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_TOPMOST)) ClearWindowState(ConfigFlags.FLAG_WINDOW_TOPMOST);
-                else SetWindowState(ConfigFlags.FLAG_WINDOW_TOPMOST);
+                if (IsWindowState(ConfigFlags.TopmostWindow)) ClearWindowState(ConfigFlags.TopmostWindow);
+                else SetWindowState(ConfigFlags.TopmostWindow);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_A))
+            if (IsKeyPressed(KeyboardKey.A))
             {
-                if (IsWindowState(ConfigFlags.FLAG_WINDOW_ALWAYS_RUN)) ClearWindowState(ConfigFlags.FLAG_WINDOW_ALWAYS_RUN);
-                else SetWindowState(ConfigFlags.FLAG_WINDOW_ALWAYS_RUN);
+                if (IsWindowState(ConfigFlags.AlwaysRunWindow)) ClearWindowState(ConfigFlags.AlwaysRunWindow);
+                else SetWindowState(ConfigFlags.AlwaysRunWindow);
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_V))
+            if (IsKeyPressed(KeyboardKey.V))
             {
-                if (IsWindowState(ConfigFlags.FLAG_VSYNC_HINT)) ClearWindowState(ConfigFlags.FLAG_VSYNC_HINT);
-                else SetWindowState(ConfigFlags.FLAG_VSYNC_HINT);
+                if (IsWindowState(ConfigFlags.VSyncHint)) ClearWindowState(ConfigFlags.VSyncHint);
+                else SetWindowState(ConfigFlags.VSyncHint);
             }
 
             // Bouncing ball logic
@@ -126,48 +126,59 @@ public class WindowFlagsExample : IExample
             //-----------------------------------------------------
             BeginDrawing();
 
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_TRANSPARENT)) Color.BLANK.ClearBackground();
-            else Color.RAYWHITE.ClearBackground();
+            if (IsWindowState(ConfigFlags.TransparentWindow)) Color.Blank.ClearBackground();
+            else Color.RayWhite.ClearBackground();
 
-            Color.MAROON.DrawCircle(ballPosition, ballRadius);
-            Color.RAYWHITE.DrawRectangleLines(new Rectangle(0, 0, GetScreenWidth(), GetScreenHeight()), 4f);
+            Color.Maroon.DrawCircle(ballPosition, ballRadius);
+            Color.RayWhite.DrawRectangleLines(new Rectangle(0, 0, GetScreenWidth(), GetScreenHeight()), 4f);
 
-            Color.DARKBLUE.DrawCircle(GetMousePosition(), 10);
+            Color.DarkBlue.DrawCircle(GetMousePosition(), 10);
 
             DrawFPS(10, 10);
 
-            Color.GREEN.DrawText($"Screen Size: [{GetScreenWidth()}, {GetScreenHeight()}]", 10, 40, 10);
+            Color.Green.DrawText($"Screen Size: [{GetScreenWidth()}, {GetScreenHeight()}]", 10, 40, 10);
 
             // Draw window state info
-            Color.GRAY.DrawText("Following flags can be set after window creation:", 10, 60, 10);
-            if (IsWindowState(ConfigFlags.FLAG_FULLSCREEN_MODE)) Color.LIME.DrawText("[F] ConfigFlags.FLAG_FULLSCREEN_MODE: on", 10, 80, 10);
-            else Color.MAROON.DrawText("[F] ConfigFlags.FLAG_FULLSCREEN_MODE: off", 10, 80, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_RESIZABLE)) Color.LIME.DrawText("[R] ConfigFlags.FLAG_WINDOW_RESIZABLE: on", 10, 100, 10);
-            else Color.MAROON.DrawText("[R] ConfigFlags.FLAG_WINDOW_RESIZABLE: off", 10, 100, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_UNDECORATED)) Color.LIME.DrawText("[D] ConfigFlags.FLAG_WINDOW_UNDECORATED: on", 10, 120, 10);
-            else Color.MAROON.DrawText("[D] ConfigFlags.FLAG_WINDOW_UNDECORATED: off", 10, 120, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_HIDDEN)) Color.LIME.DrawText("[H] ConfigFlags.FLAG_WINDOW_HIDDEN: on", 10, 140, 10);
-            else Color.MAROON.DrawText("[H] ConfigFlags.FLAG_WINDOW_HIDDEN: off", 10, 140, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_MINIMIZED)) Color.LIME.DrawText("[N] ConfigFlags.FLAG_WINDOW_MINIMIZED: on", 10, 160, 10);
-            else Color.MAROON.DrawText("[N] ConfigFlags.FLAG_WINDOW_MINIMIZED: off", 10, 160, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_MAXIMIZED)) Color.LIME.DrawText("[M] ConfigFlags.FLAG_WINDOW_MAXIMIZED: on", 10, 180, 10);
-            else Color.MAROON.DrawText("[M] ConfigFlags.FLAG_WINDOW_MAXIMIZED: off", 10, 180, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_UNFOCUSED)) Color.LIME.DrawText("[G] ConfigFlags.FLAG_WINDOW_UNFOCUSED: on", 10, 200, 10);
-            else Color.MAROON.DrawText("[U] ConfigFlags.FLAG_WINDOW_UNFOCUSED: off", 10, 200, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_TOPMOST)) Color.LIME.DrawText("[T] ConfigFlags.FLAG_WINDOW_TOPMOST: on", 10, 220, 10);
-            else Color.MAROON.DrawText("[T] ConfigFlags.FLAG_WINDOW_TOPMOST: off", 10, 220, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_ALWAYS_RUN)) Color.LIME.DrawText("[A] ConfigFlags.FLAG_WINDOW_ALWAYS_RUN: on", 10, 240, 10);
-            else Color.MAROON.DrawText("[A] ConfigFlags.FLAG_WINDOW_ALWAYS_RUN: off", 10, 240, 10);
-            if (IsWindowState(ConfigFlags.FLAG_VSYNC_HINT)) Color.LIME.DrawText("[V] ConfigFlags.FLAG_VSYNC_HINT: on", 10, 260, 10);
-            else Color.MAROON.DrawText("[V] ConfigFlags.FLAG_VSYNC_HINT: off", 10, 260, 10);
+            Color.Gray.DrawText("Following flags can be set after window creation:", 10, 60, 10);
+            if (IsWindowState(ConfigFlags.FullscreenMode))
+                Color.Lime.DrawText("[F] ConfigFlags.FullscreenMode: on", 10, 80, 10);
+            else Color.Maroon.DrawText("[F] ConfigFlags.FullscreenMode: off", 10, 80, 10);
+            if (IsWindowState(ConfigFlags.ResizableWindow))
+                Color.Lime.DrawText("[R] ConfigFlags.ResizableWindow: on", 10, 100, 10);
+            else Color.Maroon.DrawText("[R] ConfigFlags.ResizableWindow: off", 10, 100, 10);
+            if (IsWindowState(ConfigFlags.UndecoratedWindow))
+                Color.Lime.DrawText("[D] ConfigFlags.UndecoratedWindow: on", 10, 120, 10);
+            else Color.Maroon.DrawText("[D] ConfigFlags.UndecoratedWindow: off", 10, 120, 10);
+            if (IsWindowState(ConfigFlags.HiddenWindow))
+                Color.Lime.DrawText("[H] ConfigFlags.HiddenWindow: on", 10, 140, 10);
+            else Color.Maroon.DrawText("[H] ConfigFlags.HiddenWindow: off", 10, 140, 10);
+            if (IsWindowState(ConfigFlags.MinimizedWindow))
+                Color.Lime.DrawText("[N] ConfigFlags.MinimizedWindow: on", 10, 160, 10);
+            else Color.Maroon.DrawText("[N] ConfigFlags.MinimizedWindow: off", 10, 160, 10);
+            if (IsWindowState(ConfigFlags.MaximizedWindow))
+                Color.Lime.DrawText("[M] ConfigFlags.MaximizedWindow: on", 10, 180, 10);
+            else Color.Maroon.DrawText("[M] ConfigFlags.MaximizedWindow: off", 10, 180, 10);
+            if (IsWindowState(ConfigFlags.UnfocusedWindow))
+                Color.Lime.DrawText("[G] ConfigFlags.UnfocusedWindow: on", 10, 200, 10);
+            else Color.Maroon.DrawText("[U] ConfigFlags.UnfocusedWindow: off", 10, 200, 10);
+            if (IsWindowState(ConfigFlags.TopmostWindow))
+                Color.Lime.DrawText("[T] ConfigFlags.TopmostWindow: on", 10, 220, 10);
+            else Color.Maroon.DrawText("[T] ConfigFlags.TopmostWindow: off", 10, 220, 10);
+            if (IsWindowState(ConfigFlags.AlwaysRunWindow))
+                Color.Lime.DrawText("[A] ConfigFlags.AlwaysRunWindow: on", 10, 240, 10);
+            else Color.Maroon.DrawText("[A] ConfigFlags.AlwaysRunWindow: off", 10, 240, 10);
+            if (IsWindowState(ConfigFlags.VSyncHint)) Color.Lime.DrawText("[V] ConfigFlags.VSyncHint: on", 10, 260, 10);
+            else Color.Maroon.DrawText("[V] ConfigFlags.VSyncHint: off", 10, 260, 10);
 
-            Color.GRAY.DrawText("Following flags can only be set before window creation:", 10, 300, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_HIGHDPI)) Color.LIME.DrawText("ConfigFlags.FLAG_WINDOW_HIGHDPI: on", 10, 320, 10);
-            else Color.MAROON.DrawText("ConfigFlags.FLAG_WINDOW_HIGHDPI: off", 10, 320, 10);
-            if (IsWindowState(ConfigFlags.FLAG_WINDOW_TRANSPARENT)) Color.LIME.DrawText("ConfigFlags.FLAG_WINDOW_TRANSPARENT: on", 10, 340, 10);
-            else Color.MAROON.DrawText("ConfigFlags.FLAG_WINDOW_TRANSPARENT: off", 10, 340, 10);
-            if (IsWindowState(ConfigFlags.FLAG_MSAA_4X_HINT)) Color.LIME.DrawText("ConfigFlags.FLAG_MSAA_4X_HINT: on", 10, 360, 10);
-            else Color.MAROON.DrawText("ConfigFlags.FLAG_MSAA_4X_HINT: off", 10, 360, 10);
+            Color.Gray.DrawText("Following flags can only be set before window creation:", 10, 300, 10);
+            if (IsWindowState(ConfigFlags.HighDpiWindow))
+                Color.Lime.DrawText("ConfigFlags.HighDpiWindow: on", 10, 320, 10);
+            else Color.Maroon.DrawText("ConfigFlags.HighDpiWindow: off", 10, 320, 10);
+            if (IsWindowState(ConfigFlags.TransparentWindow))
+                Color.Lime.DrawText("ConfigFlags.TransparentWindow: on", 10, 340, 10);
+            else Color.Maroon.DrawText("ConfigFlags.TransparentWindow: off", 10, 340, 10);
+            if (IsWindowState(ConfigFlags.Msaa4xHint)) Color.Lime.DrawText("ConfigFlags.Msaa4xHint: on", 10, 360, 10);
+            else Color.Maroon.DrawText("ConfigFlags.Msaa4xHint: off", 10, 360, 10);
 
             EndDrawing();
             //-----------------------------------------------------

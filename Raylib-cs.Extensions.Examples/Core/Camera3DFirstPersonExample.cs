@@ -14,22 +14,22 @@ public class Camera3DFirstPersonExample : IExample
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera first person");
 
         // Define the camera to look into our 3d world (position, target, up vector)
-        Camera3D camera = new Camera3D(
+        var camera = new Camera3D(
             new Vector3(0.0f, 2.0f, 4.0f),
             new Vector3(0.0f, 2.0f, 0.0f),
             Vector3.UnitY,
             60.0f,
-            CameraProjection.CAMERA_PERSPECTIVE
+            CameraProjection.Perspective
         );
-        CameraMode cameraMode = CameraMode.CAMERA_FIRST_PERSON;
+        var cameraMode = CameraMode.FirstPerson;
 
         // Generates some random columns
-        float[] heights = new float[MAX_COLUMNS];
-        Vector3[] positions = new Vector3[MAX_COLUMNS];
-        Color[] colors = new Color[MAX_COLUMNS];
-        Random random = new Random();
+        var heights = new float[MAX_COLUMNS];
+        var positions = new Vector3[MAX_COLUMNS];
+        var colors = new Color[MAX_COLUMNS];
+        var random = new Random();
 
-        for (int i = 0; i < MAX_COLUMNS; i++)
+        for (var i = 0; i < MAX_COLUMNS; i++)
         {
             heights[i] = random.Next(1, 12);
             positions[i] = new Vector3(
@@ -51,55 +51,55 @@ public class Camera3DFirstPersonExample : IExample
             // Update
             //----------------------------------------------------------------------------------
             // Switch camera mode
-            if (IsKeyPressed(KeyboardKey.KEY_ONE))
+            if (IsKeyPressed(KeyboardKey.One))
             {
-                cameraMode = CameraMode.CAMERA_FREE;
-                camera.up = Vector3.UnitY; // Reset roll
+                cameraMode = CameraMode.Free;
+                camera.Up = Vector3.UnitY; // Reset roll
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_TWO))
+            if (IsKeyPressed(KeyboardKey.Two))
             {
-                cameraMode = CameraMode.CAMERA_FIRST_PERSON;
-                camera.up = Vector3.UnitY; // Reset roll
+                cameraMode = CameraMode.FirstPerson;
+                camera.Up = Vector3.UnitY; // Reset roll
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_THREE))
+            if (IsKeyPressed(KeyboardKey.Three))
             {
-                cameraMode = CameraMode.CAMERA_THIRD_PERSON;
-                camera.up = Vector3.UnitY; // Reset roll
+                cameraMode = CameraMode.ThirdPerson;
+                camera.Up = Vector3.UnitY; // Reset roll
             }
 
-            if (IsKeyPressed(KeyboardKey.KEY_FOUR))
+            if (IsKeyPressed(KeyboardKey.Four))
             {
-                cameraMode = CameraMode.CAMERA_ORBITAL;
-                camera.up = Vector3.UnitY; // Reset roll
+                cameraMode = CameraMode.Orbital;
+                camera.Up = Vector3.UnitY; // Reset roll
             }
 
             // Switch camera projection
-            if (IsKeyPressed(KeyboardKey.KEY_P))
+            if (IsKeyPressed(KeyboardKey.P))
             {
-                if (camera.projection == CameraProjection.CAMERA_PERSPECTIVE)
+                if (camera.Projection == CameraProjection.Perspective)
                 {
                     // Create isometric view
-                    cameraMode = CameraMode.CAMERA_THIRD_PERSON;
+                    cameraMode = CameraMode.ThirdPerson;
                     // Note: The target distance is related to the render distance in the orthographic projection
-                    camera.position = new Vector3(0.0f, 2.0f, -100.0f);
-                    camera.target = new Vector3(0.0f, 2.0f, 0.0f);
-                    camera.up = Vector3.UnitY;
-                    camera.projection = CameraProjection.CAMERA_ORTHOGRAPHIC;
-                    camera.fovy = 20.0f; // near plane width in CAMERA_ORTHOGRAPHIC
+                    camera.Position = new Vector3(0.0f, 2.0f, -100.0f);
+                    camera.Target = new Vector3(0.0f, 2.0f, 0.0f);
+                    camera.Up = Vector3.UnitY;
+                    camera.Projection = CameraProjection.Orthographic;
+                    camera.FovY = 20.0f; // near plane width in Orthographic
                     CameraYaw(&camera, -135 * DEG2RAD, true);
                     CameraPitch(&camera, -45 * DEG2RAD, true, true, false);
                 }
-                else if (camera.projection == CameraProjection.CAMERA_ORTHOGRAPHIC)
+                else if (camera.Projection == CameraProjection.Orthographic)
                 {
                     // Reset to default view
-                    cameraMode = CameraMode.CAMERA_THIRD_PERSON;
-                    camera.position = new Vector3(0.0f, 2.0f, 10.0f);
-                    camera.target = new Vector3(0.0f, 2.0f, 0.0f);
-                    camera.up = Vector3.UnitY;
-                    camera.projection = CameraProjection.CAMERA_PERSPECTIVE;
-                    camera.fovy = 60.0f;
+                    cameraMode = CameraMode.ThirdPerson;
+                    camera.Position = new Vector3(0.0f, 2.0f, 10.0f);
+                    camera.Target = new Vector3(0.0f, 2.0f, 0.0f);
+                    camera.Up = Vector3.UnitY;
+                    camera.Projection = CameraProjection.Perspective;
+                    camera.FovY = 60.0f;
                 }
             }
 
@@ -114,51 +114,56 @@ public class Camera3DFirstPersonExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 camera.BeginMode();
 
-                Color.LIGHTGRAY.DrawPlane(Vector3.Zero, new Vector2(32, 32)); // Draw ground
-                Color.BLUE.DrawCube(new Vector3(-16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f); // Draw a blue wall
-                Color.LIME.DrawCube(new Vector3(16.0f, 2.5f, 32.0f), 1.0f, 5.0f, 32.0f); // Draw a green wall
-                Color.GOLD.DrawCube(new Vector3(0.0f, 2.5f, 16.0f), 32.0f, 5.0f, 1.0f); // Draw a yellow wall
+                Color.LightGray.DrawPlane(Vector3.Zero, new Vector2(32, 32)); // Draw ground
+                Color.Blue.DrawCube(new Vector3(-16.0f, 2.5f, 0.0f), 1.0f, 5.0f, 32.0f); // Draw a blue wall
+                Color.Lime.DrawCube(new Vector3(16.0f, 2.5f, 32.0f), 1.0f, 5.0f, 32.0f); // Draw a green wall
+                Color.Gold.DrawCube(new Vector3(0.0f, 2.5f, 16.0f), 32.0f, 5.0f, 1.0f); // Draw a yellow wall
 
                 // Draw some cubes around
-                for (int i = 0; i < MAX_COLUMNS; i++)
+                for (var i = 0; i < MAX_COLUMNS; i++)
                 {
                     colors[i].DrawCube(positions[i], 2.0f, heights[i], 2.0f);
-                    Color.MAROON.DrawCubeWires(positions[i], 2.0f, heights[i], 2.0f);
+                    Color.Maroon.DrawCubeWires(positions[i], 2.0f, heights[i], 2.0f);
                 }
 
                 // Draw player cube
-                if (cameraMode == CameraMode.CAMERA_THIRD_PERSON)
+                if (cameraMode == CameraMode.ThirdPerson)
                 {
-                    Color.PURPLE.DrawCube(camera.target, 0.5f, 0.5f, 0.5f);
-                    Color.DARKPURPLE.DrawCubeWires(camera.target, 0.5f, 0.5f, 0.5f);
+                    Color.Purple.DrawCube(camera.Target, 0.5f, 0.5f, 0.5f);
+                    Color.DarkPurple.DrawCubeWires(camera.Target, 0.5f, 0.5f, 0.5f);
                 }
             }
             camera.EndMode();
 
             // Draw info boxes
-            Color.SKYBLUE.Alpha(0.5f).DrawRectangle(5, 5, 330, 100);
-            Color.BLUE.DrawRectangleLines(5, 5, 330, 100);
+            Color.SkyBlue.Alpha(0.5f).DrawRectangle(5, 5, 330, 100);
+            Color.Blue.DrawRectangleLines(5, 5, 330, 100);
 
-            Color.BLACK.DrawText("Camera controls:", 15, 15, 10);
-            Color.BLACK.DrawText("- Move keys: W, A, S, D, Space, Left-Ctrl", 15, 30, 10);
-            Color.BLACK.DrawText("- Look around: arrow keys or mouse", 15, 45, 10);
-            Color.BLACK.DrawText("- Camera mode keys: 1, 2, 3, 4", 15, 60, 10);
-            Color.BLACK.DrawText("- Zoom keys: num-plus, num-minus or mouse scroll", 15, 75, 10);
-            Color.BLACK.DrawText("- Camera projection key: P", 15, 90, 10);
+            Color.Black.DrawText("Camera controls:", 15, 15, 10);
+            Color.Black.DrawText("- Move keys: W, A, S, D, Space, Left-Ctrl", 15, 30, 10);
+            Color.Black.DrawText("- Look around: arrow keys or mouse", 15, 45, 10);
+            Color.Black.DrawText("- Camera mode keys: 1, 2, 3, 4", 15, 60, 10);
+            Color.Black.DrawText("- Zoom keys: num-plus, num-minus or mouse scroll", 15, 75, 10);
+            Color.Black.DrawText("- Camera projection key: P", 15, 90, 10);
 
-            Color.SKYBLUE.Alpha(0.5f).DrawRectangle(600, 5, 195, 100);
-            Color.BLUE.DrawRectangleLines(600, 5, 195, 100);
+            Color.SkyBlue.Alpha(0.5f).DrawRectangle(600, 5, 195, 100);
+            Color.Blue.DrawRectangleLines(600, 5, 195, 100);
 
-            Color.BLACK.DrawText("Camera status:", 610, 15, 10);
-            Color.BLACK.DrawText($"- Mode: {cameraMode.ToString().Replace("CAMERA_", null)}", 610, 30, 10);
-            Color.BLACK.DrawText($"- Projection: {camera.projection.ToString().Replace("CAMERA_", null)}", 610, 45, 10);
-            Color.BLACK.DrawText($"- Position: ({camera.position.X:00.000}, {camera.position.Y:00.000}, {camera.position.Z:00.000}", 610, 60, 10);
-            Color.BLACK.DrawText($"- Target: ({camera.target.X:00.000}, {camera.target.Y:00.000}, {camera.target.Z:00.000})", 610, 75, 10);
-            Color.BLACK.DrawText($"- Up: ({camera.up.X:00.000}, {camera.up.Y:00.000}), {camera.up.Z:00.000}", 610, 90, 10);
+            Color.Black.DrawText("Camera status:", 610, 15, 10);
+            Color.Black.DrawText($"- Mode: {cameraMode.ToString().Replace("CAMERA_", null)}", 610, 30, 10);
+            Color.Black.DrawText($"- Projection: {camera.Projection.ToString().Replace("CAMERA_", null)}", 610, 45, 10);
+            Color.Black.DrawText(
+                $"- Position: ({camera.Position.X:00.000}, {camera.Position.Y:00.000}, {camera.Position.Z:00.000}", 610,
+                60, 10);
+            Color.Black.DrawText(
+                $"- Target: ({camera.Target.X:00.000}, {camera.Target.Y:00.000}, {camera.Target.Z:00.000})", 610, 75,
+                10);
+            Color.Black.DrawText($"- Up: ({camera.Up.X:00.000}, {camera.Up.Y:00.000}), {camera.Up.Z:00.000}", 610, 90,
+                10);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

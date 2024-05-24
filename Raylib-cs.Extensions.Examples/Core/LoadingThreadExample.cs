@@ -2,15 +2,8 @@ namespace Raylib_cs.Extensions.Game.Core;
 
 public class LoadingThreadExample : IExample
 {
-    private static volatile bool dataLoaded = false; // Data Loaded completion indicator
-    private static volatile int dataProgress = 0; // Data progress accumulator
-
-    private enum State
-    {
-        Waiting,
-        Loading,
-        Finished
-    }
+    private static volatile bool dataLoaded; // Data Loaded completion indicator
+    private static volatile int dataProgress; // Data progress accumulator
 
     public void Run(string[] args)
     {
@@ -21,10 +14,10 @@ public class LoadingThreadExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - loading thread");
 
-        Thread loadThread = new Thread(LoadDataThread); // Loading data thread id
+        var loadThread = new Thread(LoadDataThread); // Loading data thread id
 
-        State state = State.Waiting;
-        int framesCounter = 0;
+        var state = State.Waiting;
+        var framesCounter = 0;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -37,16 +30,16 @@ public class LoadingThreadExample : IExample
             switch (state)
             {
                 case State.Waiting:
-                    if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+                    if (IsKeyPressed(KeyboardKey.Enter))
                     {
                         try
                         {
                             loadThread.Start();
-                            TraceLog(TraceLogLevel.LOG_INFO, "Loading thread initialized successfully");
+                            TraceLog(TraceLogLevel.Info, "Loading thread initialized successfully");
                         }
                         catch (Exception)
                         {
-                            TraceLog(TraceLogLevel.LOG_ERROR, "Error creating loading thread");
+                            TraceLog(TraceLogLevel.Error, "Error creating loading thread");
                         }
 
                         state = State.Loading;
@@ -63,18 +56,19 @@ public class LoadingThreadExample : IExample
                         try
                         {
                             loadThread.Join();
-                            TraceLog(TraceLogLevel.LOG_INFO, "Loading thread terminated successfully");
+                            TraceLog(TraceLogLevel.Info, "Loading thread terminated successfully");
                         }
                         catch (Exception)
                         {
-                            TraceLog(TraceLogLevel.LOG_ERROR, "Error joining loading thread");
+                            TraceLog(TraceLogLevel.Error, "Error joining loading thread");
                         }
+
                         state = State.Finished;
                     }
 
                     break;
                 case State.Finished:
-                    if (IsKeyPressed(KeyboardKey.KEY_ENTER))
+                    if (IsKeyPressed(KeyboardKey.Enter))
                     {
                         // Reset everything to launch again
                         dataLoaded = false;
@@ -90,25 +84,25 @@ public class LoadingThreadExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 switch (state)
                 {
                     case State.Waiting:
-                        Color.DARKGRAY.DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20);
+                        Color.DarkGray.DrawText("PRESS ENTER to START LOADING DATA", 150, 170, 20);
                         break;
                     case State.Loading:
-                        Color.SKYBLUE.DrawRectangle(150, 200, dataProgress, 60);
+                        Color.SkyBlue.DrawRectangle(150, 200, dataProgress, 60);
                         if (framesCounter / 15 % 2 == 1)
-                            Color.DARKBLUE.DrawText("LOADING DATA...", 240, 210, 40);
+                            Color.DarkBlue.DrawText("LOADING DATA...", 240, 210, 40);
                         break;
                     case State.Finished:
-                        Color.LIME.DrawRectangle(150, 200, 500, 60);
-                        Color.GREEN.DrawText("DATA LOADED!", 250, 210, 40);
+                        Color.Lime.DrawRectangle(150, 200, 500, 60);
+                        Color.Green.DrawText("DATA LOADED!", 250, 210, 40);
                         break;
                 }
 
-                Color.DARKGRAY.DrawRectangleLines(150, 200, 500, 60);
+                Color.DarkGray.DrawRectangleLines(150, 200, 500, 60);
             }
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -121,15 +115,15 @@ public class LoadingThreadExample : IExample
     }
 
     // Loading data thread function definition
-    static void LoadDataThread()
+    private static void LoadDataThread()
     {
-        int timeCounter = 0; // Time counted in ms
-        DateTime prevTime = DateTime.Now; // Previous time
+        var timeCounter = 0; // Time counted in ms
+        var prevTime = DateTime.Now; // Previous time
 
         // We simulate data loading with a time counter for 5 seconds
         while (timeCounter < 5000)
         {
-            TimeSpan currentTime = DateTime.Now - prevTime;
+            var currentTime = DateTime.Now - prevTime;
             timeCounter = (int)currentTime.TotalMilliseconds;
 
             // We accumulate time over a global variable to be used in
@@ -139,5 +133,12 @@ public class LoadingThreadExample : IExample
 
         // When data has finished loading, we set global variable
         dataLoaded = true;
+    }
+
+    private enum State
+    {
+        Waiting,
+        Loading,
+        Finished
     }
 }

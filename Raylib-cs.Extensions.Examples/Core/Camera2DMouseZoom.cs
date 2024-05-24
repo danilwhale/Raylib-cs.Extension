@@ -11,7 +11,7 @@ public class Camera2DMouseZoom : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera mouse zoom");
 
-        Camera2D camera = new Camera2D(Vector2.Zero, Vector2.Zero, 0.0f, 1.0f);
+        var camera = new Camera2D(Vector2.Zero, Vector2.Zero, 0.0f, 1.0f);
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -22,33 +22,33 @@ public class Camera2DMouseZoom : IExample
             // Update
             //----------------------------------------------------------------------------------
             // Translate based on mouse right click
-            if (IsMouseButtonDown(MouseButton.MOUSE_BUTTON_RIGHT))
+            if (IsMouseButtonDown(MouseButton.Right))
             {
-                Vector2 delta = GetMouseDelta();
-                delta = delta * (-1.0f / camera.zoom);
+                var delta = GetMouseDelta();
+                delta = delta * (-1.0f / camera.Zoom);
 
-                camera.target = camera.target + delta;
+                camera.Target = camera.Target + delta;
             }
 
             // Zoom based on mouse wheel
-            float wheel = GetMouseWheelMove();
+            var wheel = GetMouseWheelMove();
             if (wheel != 0)
             {
                 // Get the world point that is under the mouse
-                Vector2 mouseWorldPos = camera.GetScreenToWorld(GetMousePosition());
+                var mouseWorldPos = camera.GetScreenToWorld(GetMousePosition());
 
                 // Set the offset to where the mouse is
-                camera.offset = GetMousePosition();
+                camera.Offset = GetMousePosition();
 
                 // Set the target to match, so that the camera maps the world space point 
                 // under the cursor to the screen space point under the cursor at any zoom
-                camera.target = mouseWorldPos;
+                camera.Target = mouseWorldPos;
 
                 // Zoom increment
                 const float zoomIncrement = 0.125f;
 
-                camera.zoom += wheel * zoomIncrement;
-                if (camera.zoom < zoomIncrement) camera.zoom = zoomIncrement;
+                camera.Zoom += wheel * zoomIncrement;
+                if (camera.Zoom < zoomIncrement) camera.Zoom = zoomIncrement;
             }
 
             //----------------------------------------------------------------------------------
@@ -56,26 +56,26 @@ public class Camera2DMouseZoom : IExample
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
-            Color.BLACK.ClearBackground();
+            Color.Black.ClearBackground();
 
             camera.BeginMode();
             {
                 // Draw the 3d grid, rotated 90 degrees and centered around 0,0 
                 // just so we have something in the XY plane
-                Rlgl.rlPushMatrix();
+                Rlgl.PushMatrix();
                 {
-                    Rlgl.rlTranslatef(0, 25 * 50, 0);
-                    Rlgl.rlRotatef(90, 1, 0, 0);
+                    Rlgl.Translatef(0, 25 * 50, 0);
+                    Rlgl.Rotatef(90, 1, 0, 0);
                     DrawGrid(100, 50);
                 }
-                Rlgl.rlPopMatrix();
+                Rlgl.PopMatrix();
 
                 // Draw a reference circle
-                Color.YELLOW.DrawCircle(100, 100, 50);
+                Color.Yellow.DrawCircle(100, 100, 50);
             }
             camera.EndMode();
 
-            Color.WHITE.DrawText("Mouse right button drag to move, mouse wheel to zoom", 10, 10, 20);
+            Color.White.DrawText("Mouse right button drag to move, mouse wheel to zoom", 10, 10, 20);
 
             EndDrawing();
             //----------------------------------------------------------------------------------

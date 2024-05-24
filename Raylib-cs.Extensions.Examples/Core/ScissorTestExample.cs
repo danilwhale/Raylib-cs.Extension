@@ -4,57 +4,56 @@ public class ScissorTestExample : IExample
 {
     public void Run(string[] args)
     {
-            // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+        // Initialization
+        //--------------------------------------------------------------------------------------
+        const int screenWidth = 800;
+        const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - scissor test");
+        InitWindow(screenWidth, screenHeight, "raylib [core] example - scissor test");
 
-    Rectangle scissorArea = new Rectangle(0, 0, 300, 300);
-    bool scissorMode = true;
+        var scissorArea = new Rectangle(0, 0, 300, 300);
+        var scissorMode = true;
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
+        SetTargetFPS(60); // Set our game to run at 60 frames-per-second
+        //--------------------------------------------------------------------------------------
 
-    // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
-    {
-        // Update
-        //----------------------------------------------------------------------------------
-        if (IsKeyPressed(KeyboardKey.KEY_S)) scissorMode = !scissorMode;
-
-        // Centre the scissor area around the mouse position
-        scissorArea.x = GetMouseX() - scissorArea.width/2;
-        scissorArea.y = GetMouseY() - scissorArea.height/2;
-        //----------------------------------------------------------------------------------
-
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
+        // Main game loop
+        while (!WindowShouldClose()) // Detect window close button or ESC key
         {
-            Color.RAYWHITE.ClearBackground();
+            // Update
+            //----------------------------------------------------------------------------------
+            if (IsKeyPressed(KeyboardKey.S)) scissorMode = !scissorMode;
 
-            if (scissorMode) RaylibEx.BeginScissorMode(scissorArea);
+            // Centre the scissor area around the mouse position
+            scissorArea.X = GetMouseX() - scissorArea.Width / 2;
+            scissorArea.Y = GetMouseY() - scissorArea.Height / 2;
+            //----------------------------------------------------------------------------------
 
-            // Draw full screen rectangle and some text
-            // NOTE: Only part defined by scissor area will be rendered
-            Color.RED.DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight());
-            Color.LIGHTGRAY.DrawText("Move the mouse around to reveal this text!", 190, 200, 20);
+            // Draw
+            //----------------------------------------------------------------------------------
+            BeginDrawing();
+            {
+                Color.RayWhite.ClearBackground();
 
-            if (scissorMode) EndScissorMode();
+                if (scissorMode) RaylibEx.BeginScissorMode(scissorArea);
 
-            scissorArea.DrawLines(1, Color.BLACK);
-            Color.BLACK.DrawText("Press S to toggle scissor test", 10, 10, 20);
+                // Draw full screen rectangle and some text
+                // NOTE: Only part defined by scissor area will be rendered
+                Color.Red.DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight());
+                Color.LightGray.DrawText("Move the mouse around to reveal this text!", 190, 200, 20);
+
+                if (scissorMode) EndScissorMode();
+
+                scissorArea.DrawLines(1, Color.Black);
+                Color.Black.DrawText("Press S to toggle scissor test", 10, 10, 20);
+            }
+            EndDrawing();
+            //----------------------------------------------------------------------------------
         }
-        EndDrawing();
-        //----------------------------------------------------------------------------------
-    }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
-    //--------------------------------------------------------------------------------------
-
+        // De-Initialization
+        //--------------------------------------------------------------------------------------
+        CloseWindow(); // Close window and OpenGL context
+        //--------------------------------------------------------------------------------------
     }
 }

@@ -9,27 +9,27 @@ public class MouseWheelInputExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - input mouse wheel");
 
-        int boxPositionY = screenHeight / 2 - 40;
-        int scrollSpeed = 4;
+        var boxPositionY = screenHeight / 2 - 40;
+        var scrollSpeed = 4;
 
         SetTargetFPS(60);
-        
+
         while (!WindowShouldClose())
         {
             boxPositionY -= (int)(GetMouseWheelMove() * scrollSpeed);
-            
+
             BeginDrawing();
 
-            Color.RAYWHITE.ClearBackground();
+            Color.RayWhite.ClearBackground();
 
-            Color.MAROON.DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80);
+            Color.Maroon.DrawRectangle(screenWidth / 2 - 40, boxPositionY, 80, 80);
 
-            Color.GRAY.DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20);
-            Color.LIGHTGRAY.DrawText($"Box position Y: {boxPositionY:D}", 10, 40, 20);
+            Color.Gray.DrawText("Use mouse wheel to move the cube up and down!", 10, 10, 20);
+            Color.LightGray.DrawText($"Box position Y: {boxPositionY:D}", 10, 40, 20);
 
             EndDrawing();
         }
-        
+
         CloseWindow();
     }
 }

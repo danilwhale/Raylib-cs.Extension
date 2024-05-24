@@ -10,28 +10,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Raylib-cs.Extensions\Raylib-cs.Extensions.csproj" />
+        <ProjectReference Include="..\Raylib-cs.Extensions\Raylib-cs.Extensions.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="Assets\Textures\RaylibCsExtension.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\Textures\Gamepads\PS3.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\Textures\Gamepads\Xbox.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Assets\Shaders\Distortion\GL330.frag">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="Assets\Shaders\Distortion\GL100.frag">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <Content Include="Assets\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>

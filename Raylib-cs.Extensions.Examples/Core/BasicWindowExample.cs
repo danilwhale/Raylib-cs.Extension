@@ -10,14 +10,14 @@ public class BasicWindowExample : IExample
         InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
         SetTargetFPS(60);
-        
+
         while (!WindowShouldClose())
         {
             BeginDrawing();
 
-            Color.RAYWHITE.ClearBackground();
+            Color.RayWhite.ClearBackground();
 
-            Color.LIGHTGRAY.DrawText("Congrats! You created your first window!", 190, 200, 20);
+            Color.LightGray.DrawText("Congrats! You created your first window!", 190, 200, 20);
 
             EndDrawing();
         }

@@ -12,14 +12,14 @@ public class Camera3DFreeExample : IExample
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera free");
 
         // Define the camera to look into our 3d world
-        Camera3D camera = new Camera3D(
-            new Vector3(0.0f, 10.0f, 10.0f), 
-            Vector3.Zero, 
-            Vector3.UnitY, 
-            45.0f, 
-            CameraProjection.CAMERA_PERSPECTIVE);
+        var camera = new Camera3D(
+            new Vector3(0.0f, 10.0f, 10.0f),
+            Vector3.Zero,
+            Vector3.UnitY,
+            45.0f,
+            CameraProjection.Perspective);
 
-        Vector3 cubePosition = Vector3.Zero;
+        var cubePosition = Vector3.Zero;
 
         DisableCursor(); // Limit cursor to relative movement inside the window
 
@@ -31,34 +31,34 @@ public class Camera3DFreeExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            camera.Update(CameraMode.CAMERA_FREE);
+            camera.Update(CameraMode.Free);
 
-            if (IsKeyDown(KeyboardKey.KEY_Z)) camera.target = Vector3.Zero;
+            if (IsKeyDown(KeyboardKey.Z)) camera.Target = Vector3.Zero;
             //----------------------------------------------------------------------------------
 
             // Draw
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 camera.BeginMode();
                 {
-                    Color.RED.DrawCube(cubePosition, 2.0f, 2.0f, 2.0f);
-                    Color.MAROON.DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f);
+                    Color.Red.DrawCube(cubePosition, 2.0f, 2.0f, 2.0f);
+                    Color.Maroon.DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f);
 
                     DrawGrid(10, 1.0f);
                 }
                 camera.EndMode();
 
-                Color.SKYBLUE.Alpha(0.5f).DrawRectangle(10, 10, 320, 133);
-                Color.BLUE.DrawRectangleLines(10, 10, 320, 133);
+                Color.SkyBlue.Alpha(0.5f).DrawRectangle(10, 10, 320, 133);
+                Color.Blue.DrawRectangleLines(10, 10, 320, 133);
 
-                Color.BLACK.DrawText("Free camera default controls:", 20, 20, 10);
-                Color.DARKGRAY.DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10);
-                Color.DARKGRAY.DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10);
-                Color.DARKGRAY.DrawText("- Alt + Mouse Wheel Pressed to Rotate", 40, 80, 10);
-                Color.DARKGRAY.DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10);
+                Color.Black.DrawText("Free camera default controls:", 20, 20, 10);
+                Color.DarkGray.DrawText("- Mouse Wheel to Zoom in-out", 40, 40, 10);
+                Color.DarkGray.DrawText("- Mouse Wheel Pressed to Pan", 40, 60, 10);
+                Color.DarkGray.DrawText("- Alt + Mouse Wheel Pressed to Rotate", 40, 80, 10);
+                Color.DarkGray.DrawText("- Z to zoom to (0, 0, 0)", 40, 120, 10);
             }
             EndDrawing();
             //----------------------------------------------------------------------------------

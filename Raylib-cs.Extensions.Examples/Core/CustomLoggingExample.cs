@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 namespace Raylib_cs.Extensions.Game.Core;
 
 public class CustomLoggingExample : IExample
@@ -33,9 +31,9 @@ public class CustomLoggingExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
 
-            Color.RAYWHITE.ClearBackground();
+            Color.RayWhite.ClearBackground();
 
-            Color.LIGHTGRAY.DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20);
+            Color.LightGray.DrawText("Check out the console output to see the custom logger in action!", 60, 200, 20);
 
             EndDrawing();
             //----------------------------------------------------------------------------------
@@ -47,24 +45,24 @@ public class CustomLoggingExample : IExample
         //--------------------------------------------------------------------------------------
     }
 
-    unsafe void CustomLog(TraceLogLevel msgType, sbyte* text, sbyte* args)
+    private unsafe void CustomLog(TraceLogLevel msgType, sbyte* text, sbyte* args)
     {
-        DateTime now = DateTime.Now;
-        string timeStr = now.ToString("yyyy-MM-dd HH:mm:ss");
+        var now = DateTime.Now;
+        var timeStr = now.ToString("yyyy-MM-dd HH:mm:ss");
         Console.Write($"[{timeStr}] ");
 
         switch (msgType)
         {
-            case TraceLogLevel.LOG_INFO:
+            case TraceLogLevel.Info:
                 Console.Write("[INFO] : ");
                 break;
-            case TraceLogLevel.LOG_ERROR:
+            case TraceLogLevel.Error:
                 Console.Write("[ERROR]: ");
                 break;
-            case TraceLogLevel.LOG_WARNING:
+            case TraceLogLevel.Warning:
                 Console.Write("[WARN] : ");
                 break;
-            case TraceLogLevel.LOG_DEBUG:
+            case TraceLogLevel.Debug:
                 Console.Write("[DEBUG]: ");
                 break;
         }

@@ -12,19 +12,19 @@ public class Picking3DExample : IExample
         InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d picking");
 
         // Define the camera to look into our 3d world
-        Camera3D camera = new Camera3D(
+        var camera = new Camera3D(
             new Vector3(10.0f, 10.0f, 10.0f), // Camera position
             Vector3.Zero, // Camera looking at point
             Vector3.UnitY, // Camera up vector (rotation towards target)
             45.0f, // Camera field-of-view Y
-            CameraProjection.CAMERA_PERSPECTIVE // Camera projection type
+            CameraProjection.Perspective // Camera projection type
         );
 
-        Vector3 cubePosition = new Vector3(0.0f, 1.0f, 0.0f);
-        Vector3 cubeSize = new Vector3(2.0f, 2.0f, 2.0f);
+        var cubePosition = new Vector3(0.0f, 1.0f, 0.0f);
+        var cubeSize = new Vector3(2.0f, 2.0f, 2.0f);
 
-        Ray ray = new Ray(); // Picking line ray
-        RayCollision collision = new RayCollision(); // Ray collision hit info
+        var ray = new Ray(); // Picking line ray
+        var collision = new RayCollision(); // Ray collision hit info
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -34,25 +34,29 @@ public class Picking3DExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            if (IsCursorHidden()) camera.Update(CameraMode.CAMERA_FIRST_PERSON);
+            if (IsCursorHidden()) camera.Update(CameraMode.FirstPerson);
 
             // Toggle camera controls
-            if (IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_RIGHT))
+            if (IsMouseButtonPressed(MouseButton.Right))
             {
                 if (IsCursorHidden()) EnableCursor();
                 else DisableCursor();
             }
 
-            if (IsMouseButtonPressed(MouseButton.MOUSE_BUTTON_LEFT))
+            if (IsMouseButtonPressed(MouseButton.Left))
             {
-                if (!collision.hit)
+                if (!collision.Hit)
                 {
                     ray = camera.GetMouseRay(GetMousePosition());
 
                     // Check collision between ray and box
-                    collision = ray.GetRayCollisionBox(new BoundingBox(cubePosition - cubeSize / 2, cubePosition + cubeSize / 2));
+                    collision = ray.GetRayCollisionBox(new BoundingBox(cubePosition - cubeSize / 2,
+                        cubePosition + cubeSize / 2));
                 }
-                else collision.hit = false;
+                else
+                {
+                    collision.Hit = false;
+                }
             }
             //----------------------------------------------------------------------------------
 
@@ -60,33 +64,35 @@ public class Picking3DExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 camera.BeginMode();
                 {
-                    if (collision.hit)
+                    if (collision.Hit)
                     {
-                        Color.RED.DrawCube(cubePosition, cubeSize);
-                        Color.MAROON.DrawCubeWires(cubePosition, cubeSize);
+                        Color.Red.DrawCube(cubePosition, cubeSize);
+                        Color.Maroon.DrawCubeWires(cubePosition, cubeSize);
 
-                        Color.GREEN.DrawCubeWires(cubePosition, cubeSize + Vector3.One * 0.2f);
+                        Color.Green.DrawCubeWires(cubePosition, cubeSize + Vector3.One * 0.2f);
                     }
                     else
                     {
-                        Color.GRAY.DrawCube(cubePosition, cubeSize);
-                        Color.DARKGRAY.DrawCubeWires(cubePosition, cubeSize);
+                        Color.Gray.DrawCube(cubePosition, cubeSize);
+                        Color.DarkGray.DrawCubeWires(cubePosition, cubeSize);
                     }
 
-                    ray.Draw(Color.MAROON);
+                    ray.Draw(Color.Maroon);
                     DrawGrid(10, 1.0f);
                 }
                 camera.EndMode();
 
-                Color.DARKGRAY.DrawText("Try clicking on the box with your mouse!", 240, 10, 20);
+                Color.DarkGray.DrawText("Try clicking on the box with your mouse!", 240, 10, 20);
 
-                if (collision.hit) Color.GREEN.DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2f, screenHeight * 0.1f, 30);
+                if (collision.Hit)
+                    Color.Green.DrawText("BOX SELECTED", (screenWidth - MeasureText("BOX SELECTED", 30)) / 2f,
+                        screenHeight * 0.1f, 30);
 
-                Color.GRAY.DrawText("Right click mouse to toggle camera controls", 10, 430, 10);
+                Color.Gray.DrawText("Right click mouse to toggle camera controls", 10, 430, 10);
 
                 DrawFPS(10, 10);
             }

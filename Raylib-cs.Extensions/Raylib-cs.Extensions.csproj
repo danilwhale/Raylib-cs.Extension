@@ -7,43 +7,30 @@
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.2.0</Version>
-        <PackageReleaseNotes>
-            + add useful™ overloads for Shader (uniform name (string), custom index (int)) 
-            + add useful™ methods for Material (SetColor, SetValue, GetTexture, GetColor, GetValue)
-            + add useful™ methods for Model (GetMaterial, GetMaterialMap, and methods for interacting with material/material maps)
-            + add methods from rcamera for camera3d
-            - remove GetDroppedFiles (because Raylib-cs already implemented it)
-            ? ***Merge remote-tracking branch 'origin/main'***</PackageReleaseNotes>
+        <Version>1.3.0</Version>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <Title>Raylib-cs.Extensions</Title>
         <Authors>danilwhale</Authors>
-        <Description>an attempt to make oop using extensions on top of raylib-cs</Description>
-        <Copyright>Copyright (c) 2023 danilwhale</Copyright>
+        <Description>silly extension-based wrapper for raylib-cs</Description>
+        <Copyright>Copyright (c) 2024 danilwhale</Copyright>
         <PackageProjectUrl>https://github.com/danilwhale/Raylib-cs.Extensions</PackageProjectUrl>
         <PackageIcon>Logo.png</PackageIcon>
         <RepositoryUrl>https://github.com/danilwhale/Raylib-cs.Extensions</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageLicenseExpression>Zlib</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Raylib-cs" Version="4.5.0.4"/>
-    </ItemGroup>
-    
-    <ItemGroup>
-        <None Include="..\Assets\Logo.png">
-            <Pack>True</Pack>
-            <PackagePath></PackagePath>
-            <Link>Logo.png</Link>
-        </None>
-        <None Include="..\LICENSE">
-            <Pack>true</Pack>
-            <PackagePath></PackagePath>
-            <Link>LICENSE</Link>
-        </None>
+        <PackageReference Include="Raylib-cs" Version="6.0.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="..\Assets\Logo.png">
+        <Pack>True</Pack>
+        <PackagePath>Logo.png</PackagePath>
+        <Link>Logo.png</Link>
+      </None>
+    </ItemGroup>
 </Project>

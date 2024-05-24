@@ -9,28 +9,28 @@ public class InputKeysExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
-        Vector2 ballPosition = new Vector2(screenWidth / 2f, screenHeight / 2f);
+        var ballPosition = new Vector2(screenWidth / 2f, screenHeight / 2f);
 
         SetTargetFPS(60);
-        
+
         while (!WindowShouldClose())
         {
-            if (IsKeyDown(KeyboardKey.KEY_RIGHT)) ballPosition.X += 2.0f;
-            if (IsKeyDown(KeyboardKey.KEY_LEFT)) ballPosition.X -= 2.0f;
-            if (IsKeyDown(KeyboardKey.KEY_UP)) ballPosition.Y -= 2.0f;
-            if (IsKeyDown(KeyboardKey.KEY_DOWN)) ballPosition.Y += 2.0f;
-            
+            if (IsKeyDown(KeyboardKey.Right)) ballPosition.X += 2.0f;
+            if (IsKeyDown(KeyboardKey.Left)) ballPosition.X -= 2.0f;
+            if (IsKeyDown(KeyboardKey.Up)) ballPosition.Y -= 2.0f;
+            if (IsKeyDown(KeyboardKey.Down)) ballPosition.Y += 2.0f;
+
             BeginDrawing();
 
-            Color.RAYWHITE.ClearBackground();
+            Color.RayWhite.ClearBackground();
 
-            Color.DARKGRAY.DrawText("move the ball with arrow keys", 10, 10, 20);
+            Color.DarkGray.DrawText("move the ball with arrow keys", 10, 10, 20);
 
-            Color.MAROON.DrawCircle(ballPosition, 50);
+            Color.Maroon.DrawCircle(ballPosition, 50);
 
             EndDrawing();
         }
-        
+
         CloseWindow();
     }
 }

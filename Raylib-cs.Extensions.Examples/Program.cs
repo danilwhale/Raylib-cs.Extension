@@ -2,8 +2,6 @@ global using static Raylib_cs.Raylib;
 global using Raylib_cs.Extensions;
 global using System.Numerics;
 
-using Raylib_cs.Extensions.Game.Core;
-
 namespace Raylib_cs.Extensions.Game;
 
 public class Program

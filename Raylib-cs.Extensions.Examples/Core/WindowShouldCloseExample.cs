@@ -11,10 +11,10 @@ public class WindowShouldCloseExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - window should close");
 
-        SetExitKey(KeyboardKey.KEY_NULL); // Disable KEY_ESCAPE to close window, X-button still works
+        SetExitKey(KeyboardKey.Null); // Disable Escape to close window, X-button still works
 
-        bool exitWindowRequested = false; // Flag to request window to exit
-        bool exitWindow = false; // Flag to set window to exit
+        var exitWindowRequested = false; // Flag to request window to exit
+        var exitWindow = false; // Flag to set window to exit
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -24,16 +24,16 @@ public class WindowShouldCloseExample : IExample
         {
             // Update
             //----------------------------------------------------------------------------------
-            // Detect if X-button or KEY_ESCAPE have been pressed to close window
-            if (WindowShouldClose() || IsKeyPressed(KeyboardKey.KEY_ESCAPE)) exitWindowRequested = true;
+            // Detect if X-button or Escape have been pressed to close window
+            if (WindowShouldClose() || IsKeyPressed(KeyboardKey.Escape)) exitWindowRequested = true;
 
             if (exitWindowRequested)
             {
                 // A request for close window has been issued, we can save data before closing
                 // or just show a message asking for confirmation
 
-                if (IsKeyPressed(KeyboardKey.KEY_Y)) exitWindow = true;
-                else if (IsKeyPressed(KeyboardKey.KEY_N)) exitWindowRequested = false;
+                if (IsKeyPressed(KeyboardKey.Y)) exitWindow = true;
+                else if (IsKeyPressed(KeyboardKey.N)) exitWindowRequested = false;
             }
             //----------------------------------------------------------------------------------
 
@@ -41,14 +41,17 @@ public class WindowShouldCloseExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
                 if (exitWindowRequested)
                 {
-                    Color.BLACK.DrawRectangle(0, 100, screenWidth, 200);
-                    Color.WHITE.DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30);
+                    Color.Black.DrawRectangle(0, 100, screenWidth, 200);
+                    Color.White.DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30);
                 }
-                else Color.LIGHTGRAY.DrawText("Try to close the window to get confirmation message!", 120, 200, 20);
+                else
+                {
+                    Color.LightGray.DrawText("Try to close the window to get confirmation message!", 120, 200, 20);
+                }
             }
             EndDrawing();
             //----------------------------------------------------------------------------------

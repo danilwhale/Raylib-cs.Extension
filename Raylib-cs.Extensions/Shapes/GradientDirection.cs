@@ -1,17 +1,17 @@
 namespace Raylib_cs.Extensions;
 
 /// <summary>
-/// Direction of gradient
+///     Direction of gradient
 /// </summary>
 public enum GradientDirection
 {
     /// <summary>
-    /// Left -> right
+    ///     Left -> right
     /// </summary>
     Horizontal,
-    
+
     /// <summary>
-    /// Top -> bottom
+    ///     Top -> bottom
     /// </summary>
     Vertical
 }

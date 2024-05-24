@@ -15,14 +15,11 @@ public class DropFilesExample : IExample
 
         InitWindow(screenWidth, screenHeight, "raylib [core] example - drop files");
 
-        int filePathCounter = 0;
-        string[] filePaths = new string[MAX_FILEPATH_RECORDED]; // We will register a maximum of filepaths
+        var filePathCounter = 0;
+        var filePaths = new string[MAX_FILEPATH_RECORDED]; // We will register a maximum of filepaths
 
         // Allocate space for the required file paths
-        for (int i = 0; i < MAX_FILEPATH_RECORDED; i++)
-        {
-            filePaths[i] = string.Empty;
-        }
+        for (var i = 0; i < MAX_FILEPATH_RECORDED; i++) filePaths[i] = string.Empty;
 
         SetTargetFPS(60); // Set our game to run at 60 frames-per-second
         //--------------------------------------------------------------------------------------
@@ -34,16 +31,14 @@ public class DropFilesExample : IExample
             //----------------------------------------------------------------------------------
             if (IsFileDropped())
             {
-                string[] droppedFiles = GetDroppedFiles();
+                var droppedFiles = GetDroppedFiles();
 
                 for (int i = 0, offset = filePathCounter; i < droppedFiles.Length; i++)
-                {
                     if (filePathCounter < MAX_FILEPATH_RECORDED - 1)
                     {
                         filePaths[offset + i] = droppedFiles[i];
                         filePathCounter++;
                     }
-                }
             }
             //----------------------------------------------------------------------------------
 
@@ -51,22 +46,25 @@ public class DropFilesExample : IExample
             //----------------------------------------------------------------------------------
             BeginDrawing();
             {
-                Color.RAYWHITE.ClearBackground();
+                Color.RayWhite.ClearBackground();
 
-                if (filePathCounter == 0) Color.DARKGRAY.DrawText("Drop your files to this window!", 100, 40, 20);
+                if (filePathCounter == 0)
+                {
+                    Color.DarkGray.DrawText("Drop your files to this window!", 100, 40, 20);
+                }
                 else
                 {
-                    Color.DARKGRAY.DrawText("Dropped files:", 100, 40, 20);
+                    Color.DarkGray.DrawText("Dropped files:", 100, 40, 20);
 
-                    for (int i = 0; i < filePathCounter; i++)
+                    for (var i = 0; i < filePathCounter; i++)
                     {
-                        if (i % 2 == 0) Color.LIGHTGRAY.Alpha(0.5f).DrawRectangle(0, 85 + 40 * i, screenWidth, 40);
-                        else Color.LIGHTGRAY.Alpha(0.3f).DrawRectangle(0, 85 + 40 * i, screenWidth, 40);
+                        if (i % 2 == 0) Color.LightGray.Alpha(0.5f).DrawRectangle(0, 85 + 40 * i, screenWidth, 40);
+                        else Color.LightGray.Alpha(0.3f).DrawRectangle(0, 85 + 40 * i, screenWidth, 40);
 
-                        Color.GRAY.DrawText(filePaths[i], 120, 100 + 40 * i, 10);
+                        Color.Gray.DrawText(filePaths[i], 120, 100 + 40 * i, 10);
                     }
 
-                    Color.DARKGRAY.DrawText("Drop new files...", 100, 110 + 40 * filePathCounter, 20);
+                    Color.DarkGray.DrawText("Drop new files...", 100, 110 + 40 * filePathCounter, 20);
                 }
             }
             EndDrawing();

@@ -1,10 +1,8 @@
-# this project is kinda abandoned, sorry. maybe some day i will have motivation to update it to raylib-cs 5.0.0
-
 ![epic library logo trust me its very epic](https://raw.githubusercontent.com/danilwhale/Raylib-cs.Extensions/main/Assets/Logo.png)
 [![Nuget](https://img.shields.io/nuget/v/Raylib-cs.Extensions)](https://www.nuget.org/packages/Raylib-cs.Extensions)
 
 # Raylib-cs.Extensions
-## attempt to make oop using extensions on top of raylib-cs
+## silly extension-based wrapper for raylib-cs
 ### wip!!1
 todo:
 - port examples
@@ -12,7 +10,7 @@ todo:
 ~~there's also Raylib-cs.Extensions.Game project to test things i made~~
 
 there's `Raylib-cs.Extensions.Examples` project with some of raylib examples ported.
-FeatureTest is `Raylib-cs.Extensions.Game`'s Program class, it won't be updated anymore :(
+FeatureTest is `Raylib-cs.Extensions.Game`'s Program class, it will be updated whenever new Raylib-cs release drops ;)
 
 ---
 
@@ -25,7 +23,7 @@ FeatureTest is `Raylib-cs.Extensions.Game`'s Program class, it won't be updated 
 ### nuget package 
 #### dotnet cli
 ```
-dotnet install Raylib-cs.Extensions
+dotnet install package Raylib-cs.Extensions
 ```
 
 #### visual studio
@@ -52,12 +50,12 @@ using Raylib_cs.Extensions;
 InitWindow(800, 480, "hello world!");
 SetTargetFPS(60);
 
-while (!WindowShouldClose)
+while (!WindowShouldClose())
 {
   BeginDrawing();
-  Color.WHITE.ClearBackground();
+  Color.White.ClearBackground();
 
-  Color.BLACK.DrawText("hello world" 12, 12, 20);
+  Color.Black.DrawText("hello world" 12, 12, 20);
 
   EndDrawing();
 }
